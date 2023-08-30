@@ -6,6 +6,9 @@ export const StyledHeader = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    border-bottom: 1px solid var(--secondary-color);
+
+    .userIcon {
+        justify-self: end;
+      }
 
 `;

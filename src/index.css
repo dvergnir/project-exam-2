@@ -14,6 +14,11 @@ h3,
   font-family: mr-eaves-xl-modern, sans-serif;
 }
 
+h1 {
+  text-align: center;
+  color: var(--secondary-color);
+}
+
 .logotext {
   position: absolute;
   left: 50%;
@@ -29,4 +34,18 @@ body {
 .userIcon {
   font-size: 25px;
   color: var(--secondary-color);
+}
+
+@media (min-width: 1000px) {
+  .logo {
+    max-width: 150px;
+  }
+
+  .logotext {
+    font-size: 5rem;
+  }
+
+  .userIcon {
+    font-size: 3rem;
+  }
 }

@@ -11,10 +11,10 @@ function Header({ children }) {
   return (
     <StyledHeader>
       <div className="logo"> {children}</div>
-      <p className="logotext">Holidaze</p>
       <NavLink>
         <FontAwesomeIcon icon={faUser} className="userIcon" />
       </NavLink>
+      <p className="logotext">Holidaze</p>
     </StyledHeader>
   );
 }

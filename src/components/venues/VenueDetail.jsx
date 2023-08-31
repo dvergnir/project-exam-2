@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getVenueById } from "../../utils/getVenueById";
+import { getVenueById } from "../../api/getVenueById";
+import {
+  VenueCardContainer,
+  VenueImage,
+  RatingSquare,
+  VenueName,
+  VenueCity,
+  ViewVenueButton,
+} from "./VenueCard.styled";
 
-const ProductDetail = () => {
+const VenueDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -15,32 +23,20 @@ const ProductDetail = () => {
   }, [id]);
 };
 
-if (!venue) {
-  return <LoadingIndicator>Loading...</LoadingIndicator>;
-}
-
 return (
-  <VenueDetailContainer>
-    <div className="venue-detail">
-      <h2>{venue.title}</h2>
-      <img src={venue.imageUrl} className="detail-image" alt={venue.title} />
-      <p>{venue.description}</p>
-      {venue.reviews && venue.reviews.length > 0 ? (
-        <div className="review-container">
-          <h3>Reviews:</h3>
-          {venue.reviews.map((review, index) => (
-            <div key={index}>
-              <p>
-                {review.username}: {review.description}{" "}
-                <b>({review.rating}/5)</b>
-              </p>
-            </div>
-          ))}
-        </div>
-      ) : null}
-      <StyledButton onClick={handleAddToCart}>Add to Cart</StyledButton>
-    </div>
-  </VenueDetailContainer>
+  <VenueCardContainer>
+    {imageUrl ? (
+      <VenueImage src={imageUrl} alt="Venue" />
+    ) : (
+      <VenueImage src={placeHolderImageUrl} alt="Placeholder" />
+    )}
+    <RatingSquare>{rating}/5</RatingSquare>
+    <VenueName>{name}</VenueName>
+    <VenueCity>{city}</VenueCity>
+    <Link to={`/holidaze/venues/${id}`}>
+      <ViewVenueButton>View Venue</ViewVenueButton>
+    </Link>
+  </VenueCardContainer>
 );
 
-export default ProductDetail;
+export default VenueDetail;

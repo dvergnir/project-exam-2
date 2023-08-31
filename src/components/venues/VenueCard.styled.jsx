@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 export const VenueCardContainer = styled.div`
@@ -38,16 +37,13 @@ export const RatingSquare = styled.div`
 `;
 
 export const VenueName = styled.h2`
-  margin: 10px;
-  margin-top: auto;
-  font-size: 16px;
-  padding: 10px;
+  margin: 10px 10px 0px 10px;
+  padding: 10px 10px 0px 10px;
   color: var(--secondary-color);
 `;
 
 export const VenueCity = styled.h3`
-  margin: 10px;
-  font-size: 16px;
+  margin: 0;
   padding: 10px;
   color: var(--secondary-color);
 `;
@@ -60,6 +56,5 @@ export const ViewVenueButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   margin: 10px;
-  margin-top: auto;
   font-size: 16px;
 `;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchData } from "../../api/getVenues";
 import VenueList from "./VenueList";
 import { SearchBar } from "../SearchBar/SearchBar";
+import { HomeH1Container } from "./Venues.Styled";
 
 export default function Venues() {
   const [data, setData] = useState([]);
@@ -24,15 +25,24 @@ export default function Venues() {
   const handleSearch = (searchTerm) => {
     setSearchTerm(searchTerm);
 
-    const filteredVenues = data.filter((venue) =>
-      venue.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const lowerSearchTerm = searchTerm.toLowerCase();
+    const filteredVenues = data.filter((venue) => {
+      const nameMatches = venue.name.toLowerCase().includes(lowerSearchTerm);
+      const locationMatches = venue.location.city
+        .toLowerCase()
+        .includes(lowerSearchTerm);
+      return nameMatches || locationMatches;
+    });
+
     setFilteredData(filteredVenues);
   };
 
   return (
     <div>
-      <SearchBar venues={data} onSearch={handleSearch} />
+      <HomeH1Container>
+        <h1>Find Your Next Adventure</h1>
+        <SearchBar onSearch={handleSearch} />
+      </HomeH1Container>
       <VenueList venues={filteredData} />
     </div>
   );

@@ -1,51 +1,24 @@
 import React, { useState } from "react";
+import { SearchBarWrapper, SearchInput } from "./SearchBar.styled";
 
-export const SearchBar = ({ venues, onSearch }) => {
+export const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setSearchTerm(inputValue);
     onSearch(inputValue);
-
-    if (inputValue.trim() !== "") {
-      const filteredSuggestions = venues.filter((venue) =>
-        venue.title.toLowerCase().includes(inputValue.toLowerCase())
-      );
-      setSuggestions(filteredSuggestions);
-    } else {
-      setSuggestions([]);
-    }
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    setSearchTerm(suggestion.title);
-    onSearch(suggestion.title);
-    setSuggestions([]);
   };
 
   return (
-    <div>
-      <input
+    <SearchBarWrapper>
+      <SearchInput
         className="search-bar"
         type="text"
-        placeholder="Search..."
+        placeholder="Search by venue or location..."
         value={searchTerm}
         onChange={handleInputChange}
       />
-      {suggestions.length > 0 && (
-        <ul className="autofill-suggestions">
-          {suggestions.map((suggestion) => (
-            <li
-              key={suggestion.id}
-              onClick={() => handleSuggestionClick(suggestion)}
-            >
-              {suggestion.title}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    </SearchBarWrapper>
   );
 };

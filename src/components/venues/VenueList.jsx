@@ -1,6 +1,7 @@
 import React from "react";
 import VenueCard from "./VenueCard";
 import { GridContainer } from "../Layout/GridContainer";
+import { Link } from "react-router-dom";
 
 export default function VenueList({ venues }) {
   return (
@@ -12,6 +13,7 @@ export default function VenueList({ venues }) {
           rating={venue.rating}
           name={venue.name}
           city={venue.location.city}
+          id={venue.id}
         />
       ))}
     </GridContainer>

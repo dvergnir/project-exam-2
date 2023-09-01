@@ -20,6 +20,14 @@ h1 {
   color: var(--secondary-color);
 }
 
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
 .logotext {
   position: absolute;
   left: 50%;

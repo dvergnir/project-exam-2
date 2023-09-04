@@ -16,3 +16,9 @@ export const DetailVenueImage = styled.img`
   height: 200px;
   object-fit: cover;
 `;
+
+export const DetailVenueIconsContainer = styled.div`
+  display: flex;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+`;

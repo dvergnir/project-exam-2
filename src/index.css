@@ -15,7 +15,8 @@ h3,
   font-family: mr-eaves-xl-modern, sans-serif;
 }
 
-h1 {
+h1,
+h2 {
   text-align: center;
   color: var(--secondary-color);
 }

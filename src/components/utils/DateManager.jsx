@@ -27,7 +27,7 @@ function DateManager({ onDatesChange, arrivalDate, departureDate }) {
         selected={localDepartureDate}
         onChange={(date) => setLocalDepartureDate(date)}
         placeholderText="Departure"
-        minDate={new Date()}
+        minDate={localArrivalDate || new Date()} // Set minDate based on arrivalDate
         className="date-picker"
       />
     </DateManagerContainer>

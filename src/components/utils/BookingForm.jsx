@@ -17,6 +17,22 @@ function BookingForm({ maxGuests, price, onDatesChange }) {
   const handleDatesChange = (arrival, departure) => {
     setArrivalDate(arrival);
     setDepartureDate(departure);
+
+    // Update the minimum selectable date for departure
+    if (arrival && departure < arrival) {
+      setDepartureDate(arrival);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("Guests:", guests);
+    console.log("Arrival Date:", arrivalDate);
+    console.log("Departure Date:", departureDate);
+    console.log("Total Price:", totalPrice);
+
+    // You can add further logic here, such as sending the booking data to a server.
   };
 
   useEffect(() => {
@@ -32,15 +48,6 @@ function BookingForm({ maxGuests, price, onDatesChange }) {
       setTotalPrice(null);
     }
   }, [arrivalDate, departureDate, price]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log("Guests:", guests);
-    console.log("Arrival Date:", arrivalDate);
-    console.log("Departure Date:", departureDate);
-    console.log("Total Price:", totalPrice);
-  };
 
   return (
     <div>

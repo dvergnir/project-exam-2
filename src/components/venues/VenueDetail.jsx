@@ -103,7 +103,9 @@ const VenueDetail = () => {
         )}
       </DetailVenueIconsContainer>
       <p className="venue-info">Guests allowed: {maxGuests}</p>
-      <p className="venue-info">{price} NOK per night</p>
+      <p className="venue-info">
+        <b>{price} NOK</b> per night
+      </p>
 
       {/* Render the BookingForm component and pass maxGuests and onDatesChange as props */}
       <BookingForm

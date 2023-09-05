@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DateManager from "../utils/DateManager";
+import { CtaStyledButton } from "./StyledButton.styled";
 
 function BookingForm({ maxGuests, price, onDatesChange }) {
   const [guests, setGuests] = useState(1);
@@ -58,9 +59,10 @@ function BookingForm({ maxGuests, price, onDatesChange }) {
           departureDate={departureDate}
           onDatesChange={handleDatesChange}
         />
-        <div>
+        <div className="guests-container">
           <label htmlFor="guests">Number of Guests:</label>
           <input
+            className="guests-input"
             type="number"
             id="guests"
             name="guests"
@@ -71,7 +73,7 @@ function BookingForm({ maxGuests, price, onDatesChange }) {
           />
         </div>
         {arrivalDate && departureDate && <h3>Total Price: {totalPrice} NOK</h3>}
-        <button type="submit">Book Now</button>
+        <CtaStyledButton type="submit">Book Now</CtaStyledButton>
       </form>
     </div>
   );

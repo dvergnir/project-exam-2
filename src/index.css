@@ -15,7 +15,9 @@ h3,
   font-family: mr-eaves-xl-modern, sans-serif;
 }
 
-h1 {
+h1,
+h2,
+h3 {
   text-align: center;
   color: var(--secondary-color);
 }
@@ -43,6 +45,46 @@ body {
 .userIcon {
   font-size: 25px;
   color: var(--secondary-color);
+}
+
+.venue-icon {
+  padding: 5px;
+}
+
+.venue-info b {
+  color: var(--secondary-color);
+}
+
+.p-center {
+  text-align: center;
+}
+
+.date-picker {
+  width: 100%;
+  max-width: 100px;
+  margin: 5px;
+  box-shadow: inset 0 0 5px var(--secondary-color);
+  padding: 5px;
+}
+
+#datepicker-heading {
+  margin: 50px auto 0px;
+}
+
+.guests-container {
+  display: flex;
+  justify-content: center;
+}
+
+.guests-container input {
+  margin: 5px;
+  box-shadow: inset 0 0 5px var(--secondary-color);
+  padding: 5px;
+}
+
+.guests-container label {
+  margin: 5px;
+  line-height: 25px;
 }
 
 @media (min-width: 1000px) {

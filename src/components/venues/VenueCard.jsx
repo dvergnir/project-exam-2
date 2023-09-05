@@ -22,7 +22,7 @@ const VenueCard = ({ imageUrl, rating, name, city, id }) => {
       <RatingSquare>{rating}/5</RatingSquare>
       <VenueName>{name}</VenueName>
       <VenueCity>{city}</VenueCity>
-      <Link to={`/holidaze/venues/${id}`}>
+      <Link to={`/venues/${id}`}>
         <ViewVenueButton>View Venue</ViewVenueButton>
       </Link>
     </VenueCardContainer>

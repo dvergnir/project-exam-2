@@ -17,8 +17,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import BookingForm from "../utils/BookingForm";
 
-const placeHolderImageUrl =
-  "https://i0.wp.com/thealmanian.com/wp-content/uploads/2019/01/product_image_thumbnail_placeholder.png?ssl=1";
+const placeHolderImageUrl = "https://placehold.co/600x400/png";
 
 const VenueDetail = () => {
   const { id } = useParams();
@@ -34,17 +33,14 @@ const VenueDetail = () => {
     breakfast: false,
     pets: true,
   });
-  const [maxGuests, setMaxGuests] = useState(1); // Adjust this as needed
+  const [maxGuests, setMaxGuests] = useState(1);
 
-  // State for managing arrival and departure dates
+  const handleImageError = (e) => {
+    e.target.src = placeHolderImageUrl;
+  };
+
   const [arrivalDate, setArrivalDate] = useState(null);
   const [departureDate, setDepartureDate] = useState(null);
-
-  // Function to handle changes in arrival and departure dates
-  const handleDatesChange = (arrival, departure) => {
-    setArrivalDate(arrival);
-    setDepartureDate(departure);
-  };
 
   useEffect(() => {
     const fetchVenue = async () => {
@@ -56,7 +52,7 @@ const VenueDetail = () => {
       setDescription(venueData.description);
       setPrice(venueData.price);
       setMeta(venueData.meta);
-      setMaxGuests(venueData.maxGuests); // Set maxGuests from the API
+      setMaxGuests(venueData.maxGuests);
     };
 
     fetchVenue();
@@ -67,7 +63,11 @@ const VenueDetail = () => {
       <h1>{name}</h1>
       <h2>{city}</h2>
       <ImageAndRatingContainer>
-        <DetailVenueImage src={imageUrl} alt="Venue" />
+        <DetailVenueImage
+          src={imageUrl}
+          alt="Venue"
+          onError={handleImageError}
+        />
         <RatingSquare>{rating}/5</RatingSquare>
       </ImageAndRatingContainer>
 
@@ -106,12 +106,10 @@ const VenueDetail = () => {
       <p className="venue-info">
         <b>{price} NOK</b> per night
       </p>
-
-      {/* Render the BookingForm component and pass maxGuests and onDatesChange as props */}
       <BookingForm
         maxGuests={maxGuests}
         price={price}
-        onDatesChange={{ arrivalDate, departureDate }} // Pass as an object
+        onDatesChange={{ arrivalDate, departureDate }}
       />
     </DetailVenueContainer>
   );

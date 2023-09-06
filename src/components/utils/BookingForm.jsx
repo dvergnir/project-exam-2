@@ -19,7 +19,6 @@ function BookingForm({ maxGuests, price, onDatesChange }) {
     setArrivalDate(arrival);
     setDepartureDate(departure);
 
-    // Update the minimum selectable date for departure
     if (arrival && departure < arrival) {
       setDepartureDate(arrival);
     }
@@ -32,8 +31,6 @@ function BookingForm({ maxGuests, price, onDatesChange }) {
     console.log("Arrival Date:", arrivalDate);
     console.log("Departure Date:", departureDate);
     console.log("Total Price:", totalPrice);
-
-    // You can add further logic here, such as sending the booking data to a server.
   };
 
   useEffect(() => {
@@ -45,7 +42,6 @@ function BookingForm({ maxGuests, price, onDatesChange }) {
       const newTotalPrice = numberOfDays * price;
       setTotalPrice(newTotalPrice);
     } else {
-      // If either arrivalDate or departureDate is not selected, set totalPrice to null
       setTotalPrice(null);
     }
   }, [arrivalDate, departureDate, price]);

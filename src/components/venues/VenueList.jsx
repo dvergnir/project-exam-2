@@ -1,7 +1,6 @@
 import React from "react";
 import VenueCard from "./VenueCard";
 import { GridContainer } from "../layout/GridContainer";
-import { Link } from "react-router-dom";
 
 export default function VenueList({ venues }) {
   return (

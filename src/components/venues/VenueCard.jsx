@@ -8,17 +8,16 @@ import {
 } from "./VenueCard.styled";
 import { Link } from "react-router-dom";
 
-const placeHolderImageUrl =
-  "https://i0.wp.com/thealmanian.com/wp-content/uploads/2019/01/product_image_thumbnail_placeholder.png?ssl=1";
+const placeHolderImageUrl = "https://placehold.co/600x400/png";
 
 const VenueCard = ({ imageUrl, rating, name, city, id }) => {
+  const handleImageError = (e) => {
+    e.target.src = placeHolderImageUrl;
+  };
+
   return (
     <VenueCardContainer>
-      {imageUrl ? (
-        <VenueImage src={imageUrl} alt="Venue" />
-      ) : (
-        <VenueImage src={placeHolderImageUrl} alt="Placeholder" />
-      )}
+      <VenueImage src={imageUrl} alt="Venue" onError={handleImageError} />
       <RatingSquare>{rating}/5</RatingSquare>
       <VenueName>{name}</VenueName>
       <VenueCity>{city}</VenueCity>

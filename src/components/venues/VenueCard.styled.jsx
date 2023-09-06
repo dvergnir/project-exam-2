@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const VenueCardContainer = styled.div`
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 5px;
   overflow: hidden;
   margin: 20px;
   box-shadow: 0 2px 4px var(--secondary-color);
@@ -14,6 +14,14 @@ export const VenueCardContainer = styled.div`
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    max-width: 500px;
+    margin: 0px;
+    box-shadow: 0 0 0;
+    border-bottom: 1px solid var(--secondary-color);
   }
 `;
 

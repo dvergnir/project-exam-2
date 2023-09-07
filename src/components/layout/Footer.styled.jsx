@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import footerSm from "../../images/footerSm.jpg";
-import footerMd from "../../images/footerMd.png";
-import footerLg from "../../images/footerLg.png";
+import footerSm from "../../images/footersm.jpg";
+import footerMd from "../../images/footermd.png";
+import footerLg from "../../images/footerlg.png";
 
 export const StyledFooter = styled.footer`
   display: flex;

@@ -55,14 +55,3 @@ export const VenueCity = styled.h3`
   padding: 10px;
   color: var(--secondary-color);
 `;
-
-export const ViewVenueButton = styled.button`
-  background-color: var(--tertiary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin: 10px;
-  font-size: 16px;
-`;

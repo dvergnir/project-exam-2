@@ -4,8 +4,8 @@ import {
   RatingSquare,
   VenueName,
   VenueCity,
-  ViewVenueButton,
 } from "./VenueCard.styled";
+import { StyledButton } from "../utils/StyledButton.styled";
 import { Link } from "react-router-dom";
 
 const placeHolderImageUrl = "https://placehold.co/600x400/png";
@@ -22,7 +22,7 @@ const VenueCard = ({ imageUrl, rating, name, city, id }) => {
       <VenueName>{name}</VenueName>
       <VenueCity>{city}</VenueCity>
       <Link to={`/venues/${id}`}>
-        <ViewVenueButton>View Venue</ViewVenueButton>
+        <StyledButton>View Venue</StyledButton>
       </Link>
     </VenueCardContainer>
   );

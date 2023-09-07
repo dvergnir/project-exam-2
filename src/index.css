@@ -8,6 +8,10 @@
   max-width: 50px;
 }
 
+a {
+  text-decoration: none;
+}
+
 h1,
 h2,
 h3,
@@ -90,6 +94,17 @@ body {
 .guests-container label {
   margin: 5px;
   line-height: 25px;
+}
+
+.register-acc {
+  text-align: center;
+  color: var(--secondary-color);
+  font-size: 1em;
+}
+
+.register-link {
+  font-size: 1.2em;
+  text-decoration: underline;
 }
 
 @media (min-width: 1000px) {

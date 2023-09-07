@@ -1,4 +1,4 @@
-import { BASE_URL } from "../assets/constants";
+import { BASE_URL } from "../../assets/constants";
 
 export const getVenueById = async (venueId) => {
   try {

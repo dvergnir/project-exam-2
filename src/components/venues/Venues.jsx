@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchData } from "../../api/getVenues";
+import { fetchData } from "../api/getVenues";
 import VenueList from "./VenueList";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { HomeH1Container } from "./Venues.Styled";

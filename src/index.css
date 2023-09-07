@@ -22,6 +22,10 @@ h3 {
   color: var(--secondary-color);
 }
 
+h1 {
+  font-size: 1.8rem;
+}
+
 h2 {
   font-size: 1.5rem;
 }
@@ -39,6 +43,7 @@ h3 {
 }
 
 body {
+  margin: 0px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 

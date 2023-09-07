@@ -1,5 +1,6 @@
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
 import holidazeLogo from "../../images/holidazeLogo.png";
 
 export default function Layout() {
@@ -9,6 +10,7 @@ export default function Layout() {
         <img src={holidazeLogo} alt="logo" className="logo"></img>
       </Header>
       <Outlet />
+      <Footer />
     </>
   );
 }

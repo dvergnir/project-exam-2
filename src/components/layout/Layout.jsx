@@ -1,7 +1,7 @@
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
-import holidazeLogo from "../../images/holidazeLogo.png";
+import holidazeLogo from "../../images/holidazelogo.png";
 
 export default function Layout() {
   return (

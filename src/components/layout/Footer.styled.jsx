@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import footerSm from "../../images/footersm.jpg";
+import footerSm from "../../images/footersm.png";
 import footerMd from "../../images/footermd.png";
 import footerLg from "../../images/footerlg.png";
 

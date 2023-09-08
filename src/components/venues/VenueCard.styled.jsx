@@ -4,7 +4,6 @@ export const VenueCardContainer = styled.div`
   border: 1px solid #ddd;
   border-radius: 5px;
   overflow: hidden;
-  margin: 20px;
   box-shadow: 0 2px 4px var(--secondary-color);
   display: flex;
   flex-direction: column;
@@ -16,9 +15,9 @@ export const VenueCardContainer = styled.div`
     transform: scale(1.1);
   }
 
-  @media (max-width: 500px) {
+  @media (min-width: 600px) {
     width: 100%;
-    max-width: 500px;
+    max-width: 300px;
     margin: 0px;
     box-shadow: 0 0 0;
     border-bottom: 1px solid var(--secondary-color);

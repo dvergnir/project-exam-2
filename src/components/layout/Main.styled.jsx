@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.main`
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1500px;
 `;

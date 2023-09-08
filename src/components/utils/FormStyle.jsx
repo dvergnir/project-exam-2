@@ -17,6 +17,12 @@ export const FormStyle = styled.form`
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    box-shadow: inset 0 0 5px var(--tertiary-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+    &:focus {
+      border-color: var(--secondary-color);
+    }
   }
 
   .error {

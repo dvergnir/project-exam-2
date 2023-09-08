@@ -10,6 +10,7 @@ export const VenueCardContainer = styled.div`
   align-items: center;
   position: relative;
   transition: transform 0.3s;
+  width: 100%;
 
   &:hover {
     transform: scale(1.1);
@@ -17,7 +18,6 @@ export const VenueCardContainer = styled.div`
 
   @media (min-width: 600px) {
     width: 100%;
-    max-width: 300px;
     margin: 0px;
     box-shadow: 0 0 0;
     border-bottom: 1px solid var(--secondary-color);

@@ -5,6 +5,7 @@ export const GridContainer = styled.div`
   grid-gap: 20px;
   padding: 10px;
   margin: 0 auto;
+  justify-items: center;
 
   @media (max-width: 599px) {
     grid-template-columns: repeat(1, 1fr);

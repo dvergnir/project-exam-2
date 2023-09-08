@@ -1,6 +1,6 @@
 // LoginForm.js
 import React from "react";
-import { FormStyle } from "./LoginUser.styled";
+import { FormStyle } from "../../../utils/FormStyle";
 import { StyledButton } from "../../../utils/StyledButton.styled";
 
 const LoginForm = ({ formData, handleInputChange, handleSubmit, error }) => (

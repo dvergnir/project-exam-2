@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import LoginForm from "./Loginform";
 import RegistrationLink from "./RegistrationLink";
+import { NavLink } from "react-router-dom";
+import { LOGIN_URL } from "../../../../assets/constants";
 
 const LoginUser = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +29,7 @@ const LoginUser = () => {
     }
 
     try {
-      const response = await fetch("YOUR_API_ENDPOINT", {
+      const response = await fetch(LOGIN_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +77,9 @@ const LoginUser = () => {
             handleSubmit={handleSubmit}
             error={error}
           />
-          <RegistrationLink />
+          <NavLink to="/register">
+            <RegistrationLink />
+          </NavLink>
         </>
       )}
     </>

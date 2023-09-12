@@ -1,15 +1,14 @@
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { StyledHeader } from "./Header.styled";
-import React from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-library.add(fas);
+import Logout from "../api/auth/login/Logout";
+import AuthContext from "../api/auth/AuthProvider";
 
 function Header({ children }) {
-  // Check if there's an access token in localStorage
-  const hasAccessToken = localStorage.getItem("accessToken");
+  // Access the accessToken state from the AuthContext
+  const { accessToken } = useContext(AuthContext);
 
   return (
     <StyledHeader>
@@ -17,16 +16,22 @@ function Header({ children }) {
         <div className="logo"> {children}</div>
       </NavLink>
 
-      {hasAccessToken ? (
-        <NavLink to="/profile">
-          {" "}
-          <FontAwesomeIcon icon={faUser} className="userIcon" />
-        </NavLink>
+      {accessToken ? (
+        <div>
+          <NavLink to="/profile">
+            <FontAwesomeIcon icon={faUser} className="userIcon" />
+          </NavLink>
+          <Logout>
+            <span>Log out</span>
+          </Logout>
+        </div>
       ) : (
-        <NavLink to="/login">
-          {" "}
-          <FontAwesomeIcon icon={faUser} className="userIcon" />
-        </NavLink>
+        <div>
+          <NavLink to="/login">
+            <FontAwesomeIcon icon={faUser} className="userIcon" />
+            <span>Log in</span>
+          </NavLink>
+        </div>
       )}
       <p className="logotext">Holidaze</p>
     </StyledHeader>

@@ -45,6 +45,7 @@ const LoginUser = () => {
 
       // Store the access token in local storage for later use
       localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("name", data.name);
 
       // Update the state with the access token
       setAccessToken(data.accessToken);

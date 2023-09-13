@@ -1,4 +1,4 @@
-import { FooterText, StyledFooter } from "./Footer.styled";
+import { StyledFooter, FooterText } from "./Footer.styled";
 
 function Footer({ children }) {
   return (

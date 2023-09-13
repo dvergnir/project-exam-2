@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MainContainer } from "../Layout/Main.styled";
+import { MainContainer } from "../layout/Main.styled";
 import {
   AvatarFormStyle,
   ProfileStyle,

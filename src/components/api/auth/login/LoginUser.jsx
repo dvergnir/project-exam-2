@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import LoginForm from "./Loginform";
 import RegistrationRoute from "./RegistrationRoute";
 import { NavLink } from "react-router-dom";
 import { LOGIN_URL } from "../../../../assets/constants";
 import AuthContext from "../AuthProvider";
 import { useNavigate } from "react-router-dom";
+import LoginForm from "./LoginForm";
 
 const LoginUser = () => {
   const [formData, setFormData] = useState({

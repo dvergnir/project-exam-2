@@ -4,21 +4,21 @@ export const VenueCardContainer = styled.div`
   border: 1px solid #ddd;
   border-radius: 5px;
   overflow: hidden;
-  margin: 20px;
   box-shadow: 0 2px 4px var(--secondary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   transition: transform 0.3s;
+  width: 100%;
+  transform: scale(0.95);
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1);
   }
 
-  @media (max-width: 500px) {
+  @media (min-width: 600px) {
     width: 100%;
-    max-width: 500px;
     margin: 0px;
     box-shadow: 0 0 0;
     border-bottom: 1px solid var(--secondary-color);
@@ -54,15 +54,4 @@ export const VenueCity = styled.h3`
   margin: 0;
   padding: 10px;
   color: var(--secondary-color);
-`;
-
-export const ViewVenueButton = styled.button`
-  background-color: var(--tertiary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin: 10px;
-  font-size: 16px;
 `;

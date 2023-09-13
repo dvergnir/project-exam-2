@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../AuthProvider";
 
 function Logout({ children }) {
   const navigate = useNavigate();
+  const { refreshAuth } = useContext(AuthContext);
 
   const handleLogout = () => {
-    // Clear the entire localStorage
     localStorage.clear();
 
-    // Redirect to the login page
+    refreshAuth();
     navigate("/login");
   };
 

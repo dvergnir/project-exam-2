@@ -5,10 +5,14 @@ export const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 15px;
 
     .userIcon {
         justify-self: end;
       }
 
+`;
+
+export const ProfileIconContainer = styled.div`
+  display: flex;
 `;

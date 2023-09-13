@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { StyledHeader } from "./Header.styled";
+import { ProfileIconContainer, StyledHeader } from "./Header.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import Logout from "../api/auth/login/Logout";
 import AuthContext from "../api/auth/AuthProvider";
 
 function Header({ children }) {
-  // Access the accessToken state from the AuthContext
   const { accessToken } = useContext(AuthContext);
+  const [loggedIn, setLoggedIn] = useState(accessToken !== null);
+
+  useEffect(() => {
+    setLoggedIn(accessToken !== null);
+  }, [accessToken]);
 
   return (
     <StyledHeader>
@@ -16,20 +19,16 @@ function Header({ children }) {
         <div className="logo"> {children}</div>
       </NavLink>
 
-      {accessToken ? (
-        <div>
+      {loggedIn ? (
+        <ProfileIconContainer>
           <NavLink to="/profile">
             <FontAwesomeIcon icon={faUser} className="userIcon" />
           </NavLink>
-          <Logout>
-            <span>Log out</span>
-          </Logout>
-        </div>
+        </ProfileIconContainer>
       ) : (
         <div>
           <NavLink to="/login">
-            <FontAwesomeIcon icon={faUser} className="userIcon" />
-            <span>Log in</span>
+            <p className="login-link">Log in</p>
           </NavLink>
         </div>
       )}

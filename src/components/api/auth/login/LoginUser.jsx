@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import LoginForm from "./Loginform";
-import RegistrationLink from "./RegistrationLink";
+import RegistrationRoute from "./RegistrationRoute";
 import { NavLink } from "react-router-dom";
 import { LOGIN_URL } from "../../../../assets/constants";
+import AuthContext from "../AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const LoginUser = () => {
   const [formData, setFormData] = useState({
@@ -10,9 +12,11 @@ const LoginUser = () => {
     password: "",
   });
 
-  const [accessToken, setAccessToken] = useState(null);
   const [error, setError] = useState(null);
 
+  const { refreshAuth } = useContext(AuthContext);
+
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -43,12 +47,11 @@ const LoginUser = () => {
 
       const data = await response.json();
 
-      // Store the access token in local storage for later use
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("name", data.name);
 
-      // Update the state with the access token
-      setAccessToken(data.accessToken);
+      refreshAuth();
+      navigate("/");
     } catch (err) {
       setError("Login failed. Please check your credentials.");
     }
@@ -60,29 +63,21 @@ const LoginUser = () => {
       return false;
     }
 
-    // You can add more specific validation checks here for email format, password strength, etc.
-
     setError(null);
     return true;
   };
 
   return (
     <>
-      {accessToken ? (
-        <div>{/* Logged-in content */}</div>
-      ) : (
-        <>
-          <LoginForm
-            formData={formData}
-            handleInputChange={handleInputChange}
-            handleSubmit={handleSubmit}
-            error={error}
-          />
-          <NavLink to="/register">
-            <RegistrationLink />
-          </NavLink>
-        </>
-      )}
+      <LoginForm
+        formData={formData}
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+        error={error}
+      />
+      <NavLink to="/register">
+        <RegistrationRoute />
+      </NavLink>
     </>
   );
 };

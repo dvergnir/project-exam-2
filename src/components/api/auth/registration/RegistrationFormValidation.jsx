@@ -1,10 +1,9 @@
 export function validateForm(data) {
   const errors = {};
 
-  // Validation rules
-  const nameRegex = /^[a-zA-Z0-9_]+$/; // Only allow letters, numbers, and underscores
+  const nameRegex = /^[a-zA-Z0-9_]+$/;
   const passwordMinLength = 8;
-  const avatarUrlRegex = /^(http|https):\/\/\S+$/; // Basic URL format validation
+  const avatarUrlRegex = /^(http|https):\/\/\S+$/;
   const emailRegex = /^(?=.*@)(?=.*(stud\.noroff\.no|noroff\.no))\S+$/;
 
   if (!data.name) {

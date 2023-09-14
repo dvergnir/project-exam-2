@@ -1,16 +1,19 @@
 import React from "react";
-import { Field } from "react-formal";
 
-const FormInput = ({ name, label, ...rest }) => {
+function FormInput({ label, type, id, name, value, onChange, error }) {
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
-      <Field name={name} {...rest} />
-      <div className="error">
-        <Field.Message for={name} />
-      </div>
-    </div>
+    <>
+      <label htmlFor={id}>{label}</label>
+      <input
+        type={type}
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+      {error && <span>{error}</span>}
+    </>
   );
-};
+}
 
 export default FormInput;

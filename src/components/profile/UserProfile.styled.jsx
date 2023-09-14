@@ -22,6 +22,8 @@ export const UploadAvatarStyle = styled.div`
 
 export const AvatarFormStyle = styled.form`
   input {
+    width: 100%;
+    max-width: 300px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

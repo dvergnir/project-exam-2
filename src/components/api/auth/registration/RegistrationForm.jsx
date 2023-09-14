@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import FormInput from "./FormInput";
-import CheckboxInput from "./CheckboxInput";
-import { validateForm } from "./RegistrationFormValidation";
-import { FormStyle } from "../../../utils/FormStyle";
-import { CtaStyledButton } from "../../../utils/StyledButton.styled";
+import RegistrationFormContent from "./RegistrationFormContent";
+import RegistrationSuccess from "./RegistrationSuccess";
 import { REGISTER_URL } from "../../../../assets/constants";
 
 function RegistrationForm() {
@@ -15,7 +12,7 @@ function RegistrationForm() {
     venueManager: false,
   });
 
-  const [errors, setErrors] = useState({});
+  const [isRegistrationSuccessful, setRegistrationSuccessful] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,87 +24,39 @@ function RegistrationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = validateForm(formData);
+    console.log("Form data:", formData);
 
-    if (Object.keys(validationErrors).length === 0) {
-      try {
-        // Make an API request to create the account
-        const response = await fetch(REGISTER_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
+    try {
+      const response = await fetch(REGISTER_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-        if (response.ok) {
-          // Request was successful, account was created
-          console.log("Account created successfully!");
-          // You can also redirect the user to a success page or perform other actions here
-        } else {
-          // Request was not successful
-          console.error("Account creation failed.");
-          // You can handle error cases, such as displaying an error message to the user
-        }
-      } catch (error) {
-        console.error("Error occurred while creating an account:", error);
+      if (response.ok) {
+        setRegistrationSuccessful(true);
+      } else {
+        console.error("Account creation failed.");
       }
-    } else {
-      setErrors(validationErrors);
+    } catch (error) {
+      console.error("Error occurred while creating an account:", error);
     }
   };
 
   return (
-    <FormStyle onSubmit={handleSubmit}>
-      <FormInput
-        label="Name"
-        type="text"
-        id="name"
-        name="name"
-        value={formData.name}
-        onChange={handleInputChange}
-        error={errors.name}
-      />
-
-      <FormInput
-        label="Email"
-        type="email"
-        id="email"
-        name="email"
-        value={formData.email}
-        onChange={handleInputChange}
-        error={errors.email}
-      />
-
-      <FormInput
-        label="Password (min. 8 characters)"
-        type="password"
-        id="password"
-        name="password"
-        value={formData.password}
-        onChange={handleInputChange}
-        error={errors.password}
-      />
-
-      <FormInput
-        label="Avatar (optional)"
-        type="text"
-        id="avatar"
-        name="avatar"
-        value={formData.avatar}
-        onChange={handleInputChange}
-      />
-
-      <CheckboxInput
-        label="Venue Manager"
-        id="venueManager"
-        name="venueManager"
-        checked={formData.venueManager}
-        onChange={handleInputChange}
-      />
-
-      <CtaStyledButton type="submit">Register</CtaStyledButton>
-    </FormStyle>
+    <div>
+      {isRegistrationSuccessful ? (
+        <RegistrationSuccess />
+      ) : (
+        <RegistrationFormContent
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
+        />
+      )}
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getVenueById } from "../api/getVenueById";
+import { getVenueById } from "../api/venue/getVenueById";
 import {
   DetailVenueContainer,
   ImageAndRatingContainer,

@@ -133,6 +133,17 @@ ul {
   padding: 0;
 }
 
+.booking-msg {
+  text-align: center;
+  padding: 20px;
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.venue-description {
+  margin-top: 25px;
+}
+
 @media (min-width: 1000px) {
   .logo {
     max-width: 150px;

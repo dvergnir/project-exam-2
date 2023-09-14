@@ -6,8 +6,6 @@ import {
   ImageAndRatingContainer,
   DetailVenueImage,
   DetailVenueIconsContainer,
-  StyledCarouselButton,
-  StyledCarouselButtonContainer,
 } from "./VenueDetail.styled";
 import { RatingSquare } from "./VenueCard.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,6 +42,7 @@ const VenueDetail = () => {
 
   const handleImageError = (e) => {
     e.target.src = placeHolderImageUrl;
+    e.target.onerror = null;
   };
 
   const [arrivalDate, setArrivalDate] = useState(null);
@@ -69,19 +68,6 @@ const VenueDetail = () => {
 
   const accessToken = localStorage.getItem("accessToken");
 
-  // Function to handle clicking the "Previous" button
-  const handlePreviousClick = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? imageUrl.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNextClick = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === imageUrl.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
   const slickSettings = {
     dots: true,
     infinite: true,
@@ -99,15 +85,24 @@ const VenueDetail = () => {
         <h2>{city}</h2>
         <ImageAndRatingContainer>
           <Slider {...slickSettings}>
-            {imageUrl.map((image, index) => (
-              <div key={index}>
+            {imageUrl.length === 0 ? (
+              <div>
                 <DetailVenueImage
-                  src={image}
-                  alt={`Venue Image ${index}`}
-                  onError={handleImageError}
+                  src={placeHolderImageUrl}
+                  alt={`Venue Placeholder Image`}
                 />
               </div>
-            ))}
+            ) : (
+              imageUrl.map((image, index) => (
+                <div key={index}>
+                  <DetailVenueImage
+                    src={image}
+                    alt={`Venue Image ${index}`}
+                    onError={handleImageError}
+                  />
+                </div>
+              ))
+            )}
           </Slider>
           <RatingSquare>{rating}/5</RatingSquare>
         </ImageAndRatingContainer>

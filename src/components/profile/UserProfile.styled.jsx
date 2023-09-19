@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ProfileStyle = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   padding: 20px;
 `;
 
@@ -22,7 +22,10 @@ export const UploadAvatarStyle = styled.div`
 
 export const AvatarFormStyle = styled.form`
   input {
-    padding: 8px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 0px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;

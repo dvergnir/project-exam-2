@@ -7,7 +7,6 @@ export const getVenueById = async (venueId) => {
       throw new Error("Failed to find venue");
     }
     const productData = await response.json();
-    console.log(response);
     return productData;
   } catch (error) {
     console.error("Error fetching venue:", error);

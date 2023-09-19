@@ -21,7 +21,8 @@ h3,
 
 h1,
 h2,
-h3 {
+h4,
+.booking-success {
   text-align: center;
   color: var(--secondary-color);
 }
@@ -114,6 +115,11 @@ body {
   text-decoration: underline;
 }
 
+.profile {
+  width: 100%;
+  max-width: 300px;
+}
+
 .profile-link {
   color: var(--secondary-color);
   font-size: 1rem;
@@ -131,6 +137,23 @@ ul {
   list-style: none;
   line-height: 30px;
   padding: 0;
+}
+
+.booking-msg {
+  text-align: center;
+  padding: 20px;
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.venue-description {
+  margin-top: 25px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 @media (min-width: 1000px) {

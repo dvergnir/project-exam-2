@@ -53,7 +53,7 @@ const LoginUser = () => {
       refreshAuth();
       navigate("/");
     } catch (err) {
-      setError("Login failed. Please check your credentials.");
+      setError("Login failed. Please check your email and password.");
     }
   };
 

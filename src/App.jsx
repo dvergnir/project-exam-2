@@ -7,6 +7,7 @@ import { useAdobeFonts } from "react-adobe-fonts";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import { AuthProvider } from "./components/api/auth/AuthProvider";
+import RouteToTop from "./components/utils/RouteToTop";
 
 function App() {
   const projectId = "txs7jyy";
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <AuthProvider>
+      <RouteToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

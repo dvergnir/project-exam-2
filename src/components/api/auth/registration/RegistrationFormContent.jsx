@@ -1,7 +1,7 @@
 import React from "react";
 import FormInput from "./FormInput";
 import CheckboxInput from "./CheckboxInput";
-import { FormStyle } from "../../../utils/FormStyle";
+import { FormStyle } from "../../../utils/FormStyle.styled";
 import { CtaStyledButton } from "../../../utils/StyledButton.styled";
 
 function RegistrationFormContent({

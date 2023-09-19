@@ -36,3 +36,32 @@ export const StyledButton = styled.button`
     box-shadow: 0 0 10px var(--tertiary-color);
   }
 `;
+
+export const StyledScrollToTopButton = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
+`;
+
+export const StyledChangeGuestsButton = styled.button`
+  background-color: var(--secondary-color);
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+`;

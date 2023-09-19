@@ -15,11 +15,13 @@ import {
   faUtensils,
   faPaw,
 } from "@fortawesome/free-solid-svg-icons";
-import BookingForm from "../utils/BookingForm";
+import BookingForm from "../booking/BookingForm";
 import { MainContainer } from "../layout/Main.styled";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { fetchBookedDates } from "../api/auth/booking/fetchBookedDates";
+import BookingConfirmation from "../booking/BookingConfirmation";
 
 const placeHolderImageUrl = "https://placehold.co/600x400/png";
 
@@ -29,6 +31,7 @@ const VenueDetail = () => {
   const [rating, setRating] = useState("");
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [meta, setMeta] = useState({
@@ -39,6 +42,7 @@ const VenueDetail = () => {
   });
   const [maxGuests, setMaxGuests] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [bookingInfo, setBookingInfo] = useState(null);
 
   const handleImageError = (e) => {
     e.target.src = placeHolderImageUrl;
@@ -47,6 +51,7 @@ const VenueDetail = () => {
 
   const [arrivalDate, setArrivalDate] = useState(null);
   const [departureDate, setDepartureDate] = useState(null);
+  const [bookedDates, setBookedDates] = useState([]);
 
   useEffect(() => {
     const fetchVenue = async () => {
@@ -57,10 +62,13 @@ const VenueDetail = () => {
       setRating(venueData.rating);
       setName(venueData.name);
       setCity(venueData.location.city);
+      setAddress(venueData.location.address);
       setDescription(venueData.description);
       setPrice(venueData.price);
       setMeta(venueData.meta);
       setMaxGuests(venueData.maxGuests);
+      const bookedDatesData = await fetchBookedDates(id);
+      setBookedDates(bookedDatesData);
     };
 
     fetchVenue();
@@ -78,77 +86,125 @@ const VenueDetail = () => {
     autoplaySpeed: 3000,
   };
 
+  const disabledDates = bookedDates.map(
+    (booking) => new Date(booking.dateFrom)
+  );
+
+  const handleBookingSuccess = (bookingData) => {
+    setBookingInfo(bookingData);
+  };
+
   return (
     <MainContainer>
       <DetailVenueContainer>
-        <h1>{name}</h1>
-        <h2>{city}</h2>
-        <ImageAndRatingContainer>
-          <Slider {...slickSettings}>
-            {imageUrl.length === 0 ? (
-              <div>
-                <DetailVenueImage
-                  src={placeHolderImageUrl}
-                  alt={`Venue Placeholder Image`}
-                />
-              </div>
-            ) : (
-              imageUrl.map((image, index) => (
-                <div key={index}>
-                  <DetailVenueImage
-                    src={image}
-                    alt={`Venue Image ${index}`}
-                    onError={handleImageError}
-                  />
-                </div>
-              ))
-            )}
-          </Slider>
-          <RatingSquare>{rating}/5</RatingSquare>
-        </ImageAndRatingContainer>
-        <p className="venue-description">{description}</p>
-        <DetailVenueIconsContainer>
-          {meta.wifi && (
-            <FontAwesomeIcon
-              icon={faWifi}
-              className="venue-icon"
-              aria-label="Wi-Fi"
-            />
-          )}
-          {meta.parking && (
-            <FontAwesomeIcon
-              icon={faParking}
-              className="venue-icon"
-              aria-label="Parking"
-            />
-          )}
-          {meta.breakfast && (
-            <FontAwesomeIcon
-              icon={faUtensils}
-              className="venue-icon"
-              aria-label="Breakfast"
-            />
-          )}
-          {meta.pets && (
-            <FontAwesomeIcon
-              icon={faPaw}
-              className="venue-icon"
-              aria-label="Pets"
-            />
-          )}
-        </DetailVenueIconsContainer>
-        <p className="venue-info">Guests allowed: {maxGuests}</p>
-        <p className="venue-info">
-          <b>{price} NOK</b> per night
-        </p>
-        {accessToken ? (
-          <BookingForm
-            maxGuests={maxGuests}
-            price={price}
-            onDatesChange={{ arrivalDate, departureDate }}
-          />
+        {bookingInfo ? (
+          <>
+            <h1>{name}</h1>
+            <h2>{city}</h2>
+            <ImageAndRatingContainer>
+              <Slider {...slickSettings}>
+                {imageUrl.length === 0 ? (
+                  <div>
+                    <DetailVenueImage
+                      src={placeHolderImageUrl}
+                      alt={`Venue Placeholder Image`}
+                    />
+                  </div>
+                ) : (
+                  imageUrl.map((image, index) => (
+                    <div key={index}>
+                      <DetailVenueImage
+                        src={image}
+                        alt={`Venue Image ${index}`}
+                        onError={handleImageError}
+                      />
+                    </div>
+                  ))
+                )}
+              </Slider>
+              <RatingSquare>{rating}/5</RatingSquare>
+            </ImageAndRatingContainer>
+            <BookingConfirmation bookingInfo={bookingInfo} />
+          </>
         ) : (
-          <p className="booking-msg">Please log in to book the venue.</p>
+          <>
+            <h1>{name}</h1>
+            <h2>{city}</h2>
+            <ImageAndRatingContainer>
+              <Slider {...slickSettings}>
+                {imageUrl.length === 0 ? (
+                  <div>
+                    <DetailVenueImage
+                      src={placeHolderImageUrl}
+                      alt={`Venue Placeholder Image`}
+                    />
+                  </div>
+                ) : (
+                  imageUrl.map((image, index) => (
+                    <div key={index}>
+                      <DetailVenueImage
+                        src={image}
+                        alt={`Venue Image ${index}`}
+                        onError={handleImageError}
+                      />
+                    </div>
+                  ))
+                )}
+              </Slider>
+              <RatingSquare>{rating}/5</RatingSquare>
+            </ImageAndRatingContainer>
+            <div className="venue-description">
+              {address && <h3>Address: {address}</h3>}
+              <p>{description}</p>
+            </div>
+            <h3>Facilities</h3>
+            <DetailVenueIconsContainer>
+              {meta.wifi && (
+                <FontAwesomeIcon
+                  icon={faWifi}
+                  className="venue-icon"
+                  aria-label="Wi-Fi"
+                />
+              )}
+              {meta.parking && (
+                <FontAwesomeIcon
+                  icon={faParking}
+                  className="venue-icon"
+                  aria-label="Parking"
+                />
+              )}
+              {meta.breakfast && (
+                <FontAwesomeIcon
+                  icon={faUtensils}
+                  className="venue-icon"
+                  aria-label="Breakfast"
+                />
+              )}
+              {meta.pets && (
+                <FontAwesomeIcon
+                  icon={faPaw}
+                  className="venue-icon"
+                  aria-label="Pets"
+                />
+              )}
+            </DetailVenueIconsContainer>
+            <p className="venue-info">Guests allowed: {maxGuests}</p>
+            <p className="venue-info">
+              <b>{price} NOK</b> per night
+            </p>
+            {accessToken ? (
+              <BookingForm
+                maxGuests={maxGuests}
+                price={price}
+                onDatesChange={{ arrivalDate, departureDate }}
+                bookedDates={bookedDates}
+                venueId={id}
+                onBookingSuccess={handleBookingSuccess}
+              />
+            ) : (
+              <p className="booking-msg">Please log in to book the venue.</p>
+            )}
+          </>
         )}
       </DetailVenueContainer>
     </MainContainer>

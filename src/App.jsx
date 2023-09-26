@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import { AuthProvider } from "./components/api/auth/AuthProvider";
 import RouteToTop from "./components/utils/RouteToTop";
+import Bookings from "./pages/Bookings";
 
 function App() {
   const projectId = "txs7jyy";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/bookings" element={<Bookings />} />
         </Route>
       </Routes>
     </AuthProvider>

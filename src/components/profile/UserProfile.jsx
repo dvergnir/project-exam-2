@@ -9,7 +9,7 @@ import {
 } from "./UserProfile.styled";
 import { StyledButton } from "../utils/StyledButton.styled";
 import { getProfile } from "../api/auth/profile/getProfile";
-import { updateAvatar } from "../api/auth/profile/UpdateAvatar";
+import { updateUserAvatar } from "../api/auth/profile/updateUserAvatar";
 import { Link } from "react-router-dom";
 import Logout from "../api/auth/login/Logout";
 
@@ -39,19 +39,19 @@ const UserProfile = () => {
   };
 
   const handleUpdateAvatar = async () => {
-    console.log("HI");
     try {
-      const success = await updateAvatar(newAvatarUrl);
+      const success = await updateUserAvatar(newAvatarUrl);
 
       if (success) {
         const updatedProfileData = await getProfile();
         setUserProfile(updatedProfileData);
         setNewAvatarUrl("");
+        setError(null); // Clear any previous errors
       } else {
-        setError("Failed to update avatar");
+        setError("Failed to update avatar"); // Display a specific error message
       }
     } catch (error) {
-      setError("Failed to update avatar");
+      setError("Failed to update avatar"); // Display a specific error message
     }
   };
 
@@ -69,13 +69,13 @@ const UserProfile = () => {
           <h2>{userProfile.name}</h2>
           <ul>
             <li>
-              <Link to="/my-reservations" className="profile-link">
-                My Reservations
+              <Link to="/profile/bookings" className="profile-link">
+                Booking History
               </Link>
             </li>
             <li>
-              <Link to="/my-venues" className="profile-link">
-                My Venues
+              <Link to="/venue-management" className="profile-link">
+                Venue Management
               </Link>
             </li>
           </ul>
@@ -94,7 +94,8 @@ const UserProfile = () => {
           </StyledButton>
         </UploadAvatarStyle>
       </AvatarFormStyle>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}{" "}
+      {/* Display error message */}
       <Logout>
         <StyledLogoutBtn className="logout-btn">Log out</StyledLogoutBtn>
       </Logout>

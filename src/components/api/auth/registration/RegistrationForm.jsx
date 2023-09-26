@@ -21,7 +21,13 @@ function RegistrationForm() {
       [name]: value,
     });
   };
-
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: checked,
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form data:", formData);
@@ -53,6 +59,7 @@ function RegistrationForm() {
         <RegistrationFormContent
           formData={formData}
           handleInputChange={handleInputChange}
+          handleCheckboxChange={handleCheckboxChange}
           handleSubmit={handleSubmit}
         />
       )}

@@ -13,7 +13,7 @@ export const getProfile = async () => {
       throw new Error("Access token not found in localStorage");
     }
 
-    const apiUrl = `${BASE_URL}/profiles/${username}`;
+    const apiUrl = `${BASE_URL}/profiles/${username}?_bookings=true&_venues=true`;
 
     const response = await fetch(apiUrl, {
       method: "GET",

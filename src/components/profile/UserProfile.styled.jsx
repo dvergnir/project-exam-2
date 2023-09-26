@@ -24,8 +24,8 @@ export const AvatarFormStyle = styled.form`
   input {
     margin: 0 auto;
     width: 100%;
-    max-width: 300px;
-    padding: 10px 0px;
+    max-width: 260px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;

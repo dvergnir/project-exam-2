@@ -7,6 +7,7 @@ import { CtaStyledButton } from "../../../utils/StyledButton.styled";
 function RegistrationFormContent({
   formData,
   handleInputChange,
+  handleCheckboxChange,
   handleSubmit,
 }) {
   return (
@@ -52,7 +53,7 @@ function RegistrationFormContent({
         id="venueManager"
         name="venueManager"
         checked={formData.venueManager}
-        onChange={handleInputChange}
+        onChange={handleCheckboxChange}
       />
 
       <CtaStyledButton type="submit">Register</CtaStyledButton>

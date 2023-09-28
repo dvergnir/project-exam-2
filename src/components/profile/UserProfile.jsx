@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { MainContainer } from "../layout/Main.styled";
-import {
-  AvatarFormStyle,
-  ProfileStyle,
-  StyledAvatar,
-  StyledLogoutBtn,
-  UploadAvatarStyle,
-} from "./UserProfile.styled";
+import { ProfileStyle, StyledAvatar } from "./UserProfile.styled";
 import { StyledButton } from "../utils/StyledButton.styled";
 import { getProfile } from "../api/auth/profile/getProfile";
 import { updateUserAvatar } from "../api/auth/profile/updateUserAvatar";
 import { Link } from "react-router-dom";
 import Logout from "../api/auth/login/Logout";
+import { useForm, Controller } from "react-hook-form";
+import AvatarForm from "./AvatarForm";
+import UpcomingBookings from "./bookings/UpcomingBookings";
 
 const placeHolderImageUrl =
   "https://upload.wikimedia.org/wikipedia/commons/a/ad/Placeholder_no_text.svg";
@@ -38,20 +35,23 @@ const UserProfile = () => {
     e.target.src = placeHolderImageUrl;
   };
 
-  const handleUpdateAvatar = async () => {
+  const { handleSubmit, control, reset, formState } = useForm();
+
+  const handleUpdateAvatar = async (formData) => {
     try {
-      const success = await updateUserAvatar(newAvatarUrl);
+      const success = await updateUserAvatar(formData.newAvatarUrl);
 
       if (success) {
         const updatedProfileData = await getProfile();
         setUserProfile(updatedProfileData);
         setNewAvatarUrl("");
-        setError(null); // Clear any previous errors
+        reset();
+        setError(null);
       } else {
-        setError("Failed to update avatar"); // Display a specific error message
+        setError("Failed to update avatar");
       }
     } catch (error) {
-      setError("Failed to update avatar"); // Display a specific error message
+      setError("Failed to update avatar");
     }
   };
 
@@ -81,23 +81,10 @@ const UserProfile = () => {
           </ul>
         </div>
       </ProfileStyle>
-      <AvatarFormStyle>
-        <UploadAvatarStyle className="update-avatar-form">
-          <input
-            type="text"
-            placeholder="Enter New Avatar URL"
-            value={newAvatarUrl}
-            onChange={(e) => setNewAvatarUrl(e.target.value)}
-          />
-          <StyledButton type="button" onClick={handleUpdateAvatar}>
-            Update Avatar
-          </StyledButton>
-        </UploadAvatarStyle>
-      </AvatarFormStyle>
-      {error && <p className="error-message">{error}</p>}{" "}
-      {/* Display error message */}
+      <AvatarForm onSubmit={handleUpdateAvatar} />
+      {error && <p className="error-message">{error}</p>} <UpcomingBookings />
       <Logout>
-        <StyledLogoutBtn className="logout-btn">Log out</StyledLogoutBtn>
+        <StyledButton className="logout-btn">Log out</StyledButton>
       </Logout>
     </MainContainer>
   );

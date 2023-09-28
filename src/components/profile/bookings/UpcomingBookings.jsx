@@ -4,22 +4,25 @@ import {
   BookingHistoryContainer,
   BookingHistoryH2,
 } from "./BookingHistory.styled";
-import { StyledButton } from "../../utils/StyledButton.styled";
+import { UpcomingBookingImg } from "./UpcomingBookings.styled";
 
-const BookingHistory = () => {
-  const [bookings, setBookings] = useState([]);
-  const [visibleBookings, setVisibleBookings] = useState(5);
+const UpcomingBookings = () => {
+  const [upcomingBookings, setUpcomingBookings] = useState([]);
 
   useEffect(() => {
-    async function getData() {
+    async function fetchUpcomingBookings() {
       try {
         const fetchedBookings = await fetchBookingsForProfile();
-        setBookings(fetchedBookings);
+        const currentDate = new Date();
+        const upcoming = fetchedBookings.filter(
+          (booking) => new Date(booking.dateTo) >= currentDate
+        );
+        setUpcomingBookings(upcoming);
       } catch (error) {
         console.log(error);
       }
     }
-    getData();
+    fetchUpcomingBookings();
   }, []);
 
   const formatDate = (dateString) => {
@@ -27,21 +30,19 @@ const BookingHistory = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const loadMore = () => {
-    const newVisibleBookings = visibleBookings + 5;
-    setVisibleBookings(newVisibleBookings);
-  };
-
-  const displayedBookings = bookings.slice(0, visibleBookings);
+  const limitedUpcomingBookings = upcomingBookings.slice(0, 3);
 
   return (
     <div>
-      <h1>Booking History</h1>
+      <h2>Upcoming Bookings</h2>
       <ul>
-        {displayedBookings.map((booking) => (
+        {limitedUpcomingBookings.map((booking) => (
           <li key={booking.id}>
             <BookingHistoryContainer>
               <BookingHistoryH2>{booking.venue.name}</BookingHistoryH2>
+              <UpcomingBookingImg
+                src={booking.venue.media}
+              ></UpcomingBookingImg>
               <p>From: {formatDate(booking.dateFrom)}</p>
               <p>To: {formatDate(booking.dateTo)}</p>
               <p>Guests: {booking.guests}</p>
@@ -49,11 +50,8 @@ const BookingHistory = () => {
           </li>
         ))}
       </ul>
-      {visibleBookings < bookings.length && (
-        <StyledButton onClick={loadMore}>Load More</StyledButton>
-      )}
     </div>
   );
 };
 
-export default BookingHistory;
+export default UpcomingBookings;

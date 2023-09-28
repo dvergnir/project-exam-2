@@ -25,8 +25,7 @@ export const updateUserAvatar = async (newAvatarUrl) => {
 
   const response = await fetch(apiUrl, requestOptions);
 
-  console.log("Response:", response);
-
+  console.log(response);
   if (!response.ok) {
     throw new Error("Failed to update avatar");
   }

@@ -1,36 +1,77 @@
-import React, { useState } from "react";
-import { FormStyle } from "../../../utils/FormStyle.styled";
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
+import FormInput from "../../../form/FormInput";
+import { FormStyle } from "../../../form/FormStyle.styled";
 import { StyledButton } from "../../../utils/StyledButton.styled";
+import { StyledErrorMessage } from "../../../utils/ErrorMessage.styled";
 
-const LoginForm = ({ formData, handleInputChange, handleSubmit, error }) => (
-  <FormStyle onSubmit={handleSubmit}>
-    <h1>Sign in</h1>
+const LoginForm = ({ onSubmit, error }) => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    <label htmlFor="email">Email:</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      value={formData.email}
-      onChange={handleInputChange}
-      required
-    />
+  return (
+    <FormStyle onSubmit={handleSubmit(onSubmit)}>
+      <h1>Sign in</h1>
 
-    <label htmlFor="password">Password:</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      value={formData.password}
-      onChange={handleInputChange}
-      required
-    />
+      <Controller
+        name="email"
+        control={control}
+        defaultValue=""
+        rules={{
+          required: "Email is required",
+          pattern: {
+            value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+            message: "Invalid email address",
+          },
+        }}
+        render={({ field }) => (
+          <FormInput
+            label="Email:"
+            type="email"
+            id="email"
+            {...field}
+            error={errors.email && errors.email.message}
+          />
+        )}
+      />
 
-    {error && <p className="error">{error}</p>}
-    <div>
-      <StyledButton type="submit">Login</StyledButton>
-    </div>
-  </FormStyle>
-);
+      <Controller
+        name="password"
+        control={control}
+        defaultValue=""
+        rules={{
+          required: "Password is required",
+          minLength: {
+            value: 8,
+            message: "Password must be at least 8 characters long",
+          },
+        }}
+        render={({ field }) => (
+          <FormInput
+            label="Password:"
+            type="password"
+            id="password"
+            {...field}
+            error={
+              errors.password && (
+                <StyledErrorMessage>
+                  {errors.password.message}
+                </StyledErrorMessage>
+              )
+            }
+          />
+        )}
+      />
+
+      {error && <p className="error">{error}</p>}
+      <div>
+        <StyledButton type="submit">Login</StyledButton>
+      </div>
+    </FormStyle>
+  );
+};
 
 export default LoginForm;

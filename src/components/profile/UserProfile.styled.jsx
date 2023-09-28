@@ -37,22 +37,3 @@ export const AvatarFormStyle = styled.form`
     }
   }
 `;
-
-export const StyledLogoutBtn = styled.button`
-  display: block;
-  width: 100%;
-  max-width: 100px;
-  margin: 50px auto 0px;
-  background-color: var(--tertiary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-
-  font-size: 16px;
-
-  &:hover {
-    box-shadow: 0 0 10px var(--tertiary-color);
-  }
-`;

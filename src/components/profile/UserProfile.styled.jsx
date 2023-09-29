@@ -24,8 +24,8 @@ export const AvatarFormStyle = styled.form`
   input {
     margin: 0 auto;
     width: 100%;
-    max-width: 300px;
-    padding: 10px 0px;
+    max-width: 260px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -35,24 +35,5 @@ export const AvatarFormStyle = styled.form`
     &:focus {
       border-color: var(--secondary-color);
     }
-  }
-`;
-
-export const StyledLogoutBtn = styled.button`
-  display: block;
-  width: 100%;
-  max-width: 100px;
-  margin: 50px auto 0px;
-  background-color: var(--tertiary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-
-  font-size: 16px;
-
-  &:hover {
-    box-shadow: 0 0 10px var(--tertiary-color);
   }
 `;

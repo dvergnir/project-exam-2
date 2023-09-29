@@ -1,31 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import RegistrationFormContent from "./RegistrationFormContent";
 import RegistrationSuccess from "./RegistrationSuccess";
 import { REGISTER_URL } from "../../../../assets/constants";
 
 function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    avatar: "",
-    venueManager: false,
-  });
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitSuccessful },
+  } = useForm();
 
-  const [isRegistrationSuccessful, setRegistrationSuccessful] = useState(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form data:", formData);
-
+  const onSubmit = async (formData) => {
     try {
       const response = await fetch(REGISTER_URL, {
         method: "POST",
@@ -36,7 +22,6 @@ function RegistrationForm() {
       });
 
       if (response.ok) {
-        setRegistrationSuccessful(true);
       } else {
         console.error("Account creation failed.");
       }
@@ -47,14 +32,10 @@ function RegistrationForm() {
 
   return (
     <div>
-      {isRegistrationSuccessful ? (
+      {isSubmitSuccessful ? (
         <RegistrationSuccess />
       ) : (
-        <RegistrationFormContent
-          formData={formData}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
-        />
+        <RegistrationFormContent onSubmit={handleSubmit(onSubmit)} />
       )}
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledCheckbox } from "./CheckboxInput.styled";
+import { StyledCheckbox } from "../api/auth/registration/CheckboxInput.styled";
 
 const CheckboxInput = React.forwardRef(
   ({ label, id, name, checked, onChange }, ref) => {

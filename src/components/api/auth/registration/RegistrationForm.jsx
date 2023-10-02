@@ -8,7 +8,7 @@ function RegistrationForm() {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitSuccessful },
+    formState: { isSubmitSuccessful, errors },
   } = useForm();
 
   const onSubmit = async (formData) => {
@@ -22,6 +22,7 @@ function RegistrationForm() {
       });
 
       if (response.ok) {
+        // Handle successful form submission here
       } else {
         console.error("Account creation failed.");
       }
@@ -35,7 +36,12 @@ function RegistrationForm() {
       {isSubmitSuccessful ? (
         <RegistrationSuccess />
       ) : (
-        <RegistrationFormContent onSubmit={handleSubmit(onSubmit)} />
+        <RegistrationFormContent
+          onSubmit={handleSubmit(onSubmit)}
+          control={control}
+          errors={errors}
+          handleSubmit={handleSubmit}
+        />
       )}
     </div>
   );

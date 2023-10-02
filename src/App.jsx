@@ -9,6 +9,8 @@ import Profile from "./pages/Profile";
 import { AuthProvider } from "./components/api/auth/AuthProvider";
 import RouteToTop from "./components/utils/RouteToTop";
 import Bookings from "./pages/Bookings";
+import VenueManagement from "./pages/VenueManagement";
+import CreateVenue from "./pages/CreateVenue";
 
 function App() {
   const projectId = "txs7jyy";
@@ -24,7 +26,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/bookings" element={<Bookings />} />
+          <Route path="/profile/booking-history" element={<Bookings />} />
+          <Route path="/venue-management" element={<VenueManagement />} />
+          <Route path="/create-venue" element={<CreateVenue />} />
         </Route>
       </Routes>
     </AuthProvider>

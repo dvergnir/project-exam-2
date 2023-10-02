@@ -69,12 +69,12 @@ const UserProfile = () => {
           <h2>{userProfile.name}</h2>
           <ul>
             <li>
-              <Link to="/profile/bookings" className="profile-link">
+              <Link to="/profile/booking-history" className="link">
                 Booking History
               </Link>
             </li>
             <li>
-              <Link to="/venue-management" className="profile-link">
+              <Link to="/venue-management" className="link">
                 Venue Management
               </Link>
             </li>

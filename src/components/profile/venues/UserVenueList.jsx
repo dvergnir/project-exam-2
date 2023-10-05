@@ -21,7 +21,7 @@ const UserVenueList = () => {
           setError("No access token found.");
           setIsLoading(false);
         }
-      }, 1000);
+      }, 3000);
     } else {
       fetchVenuesWithToken(token);
     }

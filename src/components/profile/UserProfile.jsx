@@ -66,7 +66,7 @@ const UserProfile = () => {
     localStorage.getItem("venueManager") === "true";
 
   return (
-    <MainContainer className="profile">
+    <>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
@@ -107,7 +107,7 @@ const UserProfile = () => {
           <UpcomingBookings />
         </>
       )}
-    </MainContainer>
+    </>
   );
 };
 

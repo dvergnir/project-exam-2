@@ -118,126 +118,124 @@ const VenueDetail = () => {
   };
 
   return (
-    <MainContainer>
-      <DetailVenueContainer>
-        {isLoading ? (
-          <LoadingSpinner />
-        ) : error ? (
-          <div>{errorMessage}</div>
-        ) : bookingError ? (
-          <div>{bookingErrorMessage}</div> // Display the booking error message
-        ) : bookingInfo ? (
-          <>
-            <h1>{name}</h1>
-            <h2>{city}</h2>
-            <ImageAndRatingContainer>
-              <Slider {...slickSettings}>
-                {imageUrl.length === 0 ? (
-                  <div>
+    <DetailVenueContainer>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : error ? (
+        <div>{errorMessage}</div>
+      ) : bookingError ? (
+        <div>{bookingErrorMessage}</div> // Display the booking error message
+      ) : bookingInfo ? (
+        <>
+          <h1>{name}</h1>
+          <h2>{city}</h2>
+          <ImageAndRatingContainer>
+            <Slider {...slickSettings}>
+              {imageUrl.length === 0 ? (
+                <div>
+                  <DetailVenueImage
+                    src={placeHolderImageUrl}
+                    alt={`Venue Placeholder Image`}
+                  />
+                </div>
+              ) : (
+                imageUrl.map((image, index) => (
+                  <div key={index}>
                     <DetailVenueImage
-                      src={placeHolderImageUrl}
-                      alt={`Venue Placeholder Image`}
+                      src={image}
+                      alt={`Venue Image ${index}`}
+                      onError={handleImageError}
                     />
                   </div>
-                ) : (
-                  imageUrl.map((image, index) => (
-                    <div key={index}>
-                      <DetailVenueImage
-                        src={image}
-                        alt={`Venue Image ${index}`}
-                        onError={handleImageError}
-                      />
-                    </div>
-                  ))
-                )}
-              </Slider>
-              <RatingSquare>{rating}/5</RatingSquare>
-            </ImageAndRatingContainer>
-            <BookingConfirmation bookingInfo={bookingInfo} />
-          </>
-        ) : (
-          <>
-            <h1>{name}</h1>
-            <h2>{city}</h2>
-            <ImageAndRatingContainer>
-              <Slider {...slickSettings}>
-                {imageUrl.length === 0 ? (
-                  <div>
+                ))
+              )}
+            </Slider>
+            <RatingSquare>{rating}/5</RatingSquare>
+          </ImageAndRatingContainer>
+          <BookingConfirmation bookingInfo={bookingInfo} />
+        </>
+      ) : (
+        <>
+          <h1>{name}</h1>
+          <h2>{city}</h2>
+          <ImageAndRatingContainer>
+            <Slider {...slickSettings}>
+              {imageUrl.length === 0 ? (
+                <div>
+                  <DetailVenueImage
+                    src={placeHolderImageUrl}
+                    alt={`Venue Placeholder Image`}
+                  />
+                </div>
+              ) : (
+                imageUrl.map((image, index) => (
+                  <div key={index}>
                     <DetailVenueImage
-                      src={placeHolderImageUrl}
-                      alt={`Venue Placeholder Image`}
+                      src={image}
+                      alt={`Venue Image ${index}`}
+                      onError={handleImageError}
                     />
                   </div>
-                ) : (
-                  imageUrl.map((image, index) => (
-                    <div key={index}>
-                      <DetailVenueImage
-                        src={image}
-                        alt={`Venue Image ${index}`}
-                        onError={handleImageError}
-                      />
-                    </div>
-                  ))
-                )}
-              </Slider>
-              <RatingSquare>{rating}/5</RatingSquare>
-            </ImageAndRatingContainer>
-            <div className="venue-description">
-              {address && <h3>Address: {address}</h3>}
-              <p>{description}</p>
-            </div>
-            <h3>Facilities</h3>
-            <DetailVenueIconsContainer>
-              {meta.wifi && (
-                <FontAwesomeIcon
-                  icon={faWifi}
-                  className="venue-icon"
-                  aria-label="Wi-Fi"
-                />
+                ))
               )}
-              {meta.parking && (
-                <FontAwesomeIcon
-                  icon={faParking}
-                  className="venue-icon"
-                  aria-label="Parking"
-                />
-              )}
-              {meta.breakfast && (
-                <FontAwesomeIcon
-                  icon={faUtensils}
-                  className="venue-icon"
-                  aria-label="Breakfast"
-                />
-              )}
-              {meta.pets && (
-                <FontAwesomeIcon
-                  icon={faPaw}
-                  className="venue-icon"
-                  aria-label="Pets"
-                />
-              )}
-            </DetailVenueIconsContainer>
-            <p className="venue-info">Guests allowed: {maxGuests}</p>
-            <p className="venue-info">
-              <b>{price} NOK</b> per night
-            </p>
-            {accessToken ? (
-              <BookingForm
-                maxGuests={maxGuests}
-                price={price}
-                onDatesChange={{ arrivalDate, departureDate }}
-                bookedDates={bookedDates}
-                venueId={id}
-                onBookingSuccess={handleBookingSuccess}
-                onBookingError={handleBookingError}
+            </Slider>
+            <RatingSquare>{rating}/5</RatingSquare>
+          </ImageAndRatingContainer>
+          <div className="venue-description">
+            {address && <h3>Address: {address}</h3>}
+            <p>{description}</p>
+          </div>
+          <h3>Facilities</h3>
+          <DetailVenueIconsContainer>
+            {meta.wifi && (
+              <FontAwesomeIcon
+                icon={faWifi}
+                className="venue-icon"
+                aria-label="Wi-Fi"
               />
-            ) : (
-              <p className="booking-msg">Please log in to book the venue.</p>
             )}
-          </>
-        )}
-      </DetailVenueContainer>
-    </MainContainer>
+            {meta.parking && (
+              <FontAwesomeIcon
+                icon={faParking}
+                className="venue-icon"
+                aria-label="Parking"
+              />
+            )}
+            {meta.breakfast && (
+              <FontAwesomeIcon
+                icon={faUtensils}
+                className="venue-icon"
+                aria-label="Breakfast"
+              />
+            )}
+            {meta.pets && (
+              <FontAwesomeIcon
+                icon={faPaw}
+                className="venue-icon"
+                aria-label="Pets"
+              />
+            )}
+          </DetailVenueIconsContainer>
+          <p className="venue-info">Guests allowed: {maxGuests}</p>
+          <p className="venue-info">
+            <b>{price} NOK</b> per night
+          </p>
+          {accessToken ? (
+            <BookingForm
+              maxGuests={maxGuests}
+              price={price}
+              onDatesChange={{ arrivalDate, departureDate }}
+              bookedDates={bookedDates}
+              venueId={id}
+              onBookingSuccess={handleBookingSuccess}
+              onBookingError={handleBookingError}
+            />
+          ) : (
+            <p className="booking-msg">Please log in to book the venue.</p>
+          )}
+        </>
+      )}
+    </DetailVenueContainer>
   );
 };
 

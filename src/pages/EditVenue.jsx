@@ -1,6 +1,7 @@
 import EditVenuePage from "../components/api/auth/venuemanagement/EditVenuePage";
 import { MainContainer } from "../components/layout/Main.styled";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function EditVenue() {
   return (

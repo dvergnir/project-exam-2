@@ -1,6 +1,15 @@
 import { VENUE_URL } from "../../../../assets/constants";
-const createVenue = async (venueData) => {
-  const token = localStorage.getItem("bearerToken");
+
+const createVenueApi = async (venueData) => {
+  console.log("Creating venue with data:", venueData);
+  const token = localStorage.getItem("accessToken");
+
+  if (venueData.media && venueData.media.trim() !== "") {
+    const mediaUrls = venueData.media.split(",").map((url) => url.trim());
+    venueData.media = mediaUrls;
+  } else {
+    venueData.media = [];
+  }
 
   try {
     const response = await fetch(VENUE_URL, {
@@ -11,6 +20,8 @@ const createVenue = async (venueData) => {
       },
       body: JSON.stringify(venueData),
     });
+    console.log(response);
+    console.log(venueData);
 
     if (response.ok) {
       // Venue created successfully
@@ -28,4 +39,4 @@ const createVenue = async (venueData) => {
   }
 };
 
-export default createVenue;
+export default createVenueApi;

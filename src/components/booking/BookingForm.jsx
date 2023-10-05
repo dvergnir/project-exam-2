@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
-import DateManager from "./DateManager";
+import { useState, useEffect } from "react";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   CtaStyledButton,
   StyledChangeGuestsButton,
 } from "../utils/StyledButton.styled";
-
 import submitBooking from "../api/auth/booking/submitBooking";
-
-const isDateInRange = (date, startDate, endDate) => {
-  return date >= startDate && date <= endDate;
-};
+import DateManager from "./DateManager";
 
 function BookingForm({
   maxGuests,
   price,
-  onDatesChange,
   bookedDates,
   venueId,
   onBookingSuccess,
@@ -23,8 +18,6 @@ function BookingForm({
   const [totalPrice, setTotalPrice] = useState(price);
   const [arrivalDate, setArrivalDate] = useState(null);
   const [departureDate, setDepartureDate] = useState(null);
-  const [filteredRange, setFilteredRange] = useState([]);
-  const [commonDates, setCommonDates] = useState([]);
   const [error, setError] = useState("");
   const [submitDisabled, setSubmitDisabled] = useState(false);
 
@@ -35,14 +28,14 @@ function BookingForm({
   };
 
   const handleIncrement = (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     if (guests < maxGuests) {
       setGuests(guests + 1);
     }
   };
 
   const handleDecrement = (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     if (guests > 1) {
       setGuests(guests - 1);
     }
@@ -51,44 +44,15 @@ function BookingForm({
   const handleDatesChange = (arrival, departure) => {
     setArrivalDate(arrival);
     setDepartureDate(departure);
-
-    if (arrival && departure) {
-      const currentDate = new Date(arrival);
-      const selectedRange = [];
-
-      // Generate an array of all dates within the selected range
-      while (currentDate <= departure) {
-        selectedRange.push(new Date(currentDate));
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-
-      // Find common dates between selectedRange and bookedDates
-      const commonDates = selectedRange.filter((date) => {
-        return bookedDates.some((booking) => {
-          const bookingStartDate = new Date(booking.dateFrom);
-          const bookingEndDate = new Date(booking.dateTo);
-          return date >= bookingStartDate && date <= bookingEndDate;
-        });
-      });
-
-      // Check if there are common dates and update the error message and button state
-      if (commonDates.length > 0) {
-        setError("Some dates are already booked.");
-        setSubmitDisabled(true);
-      } else {
-        setError("");
-        setSubmitDisabled(false);
-      }
-    } else {
-      setTotalPrice(null);
-      setFilteredRange([]); // Clear the filteredRange when no dates are selected.
-      setError("");
-      setSubmitDisabled(false);
-    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!arrivalDate || !departureDate) {
+      setError("Please select both arrival and departure dates.");
+      return;
+    }
 
     setSubmitDisabled(true);
 
@@ -103,29 +67,35 @@ function BookingForm({
     };
 
     try {
-      // Call the submitBooking function with the bookingData
       const response = await submitBooking(bookingData);
 
-      // Check the response and handle it accordingly
       if (response.success) {
-        // Handle success, you can perform any actions you want here
         console.log("Booking successful!");
+
+        setTotalPrice(numberOfDays * price);
+
+        setError("");
       } else {
-        // Handle errors returned from the server, including a missing message property
         const errorMessage =
           response.message || "Booking failed with an unknown error.";
         console.error("Booking failed:", errorMessage);
+
+        setError(errorMessage);
       }
 
-      // Call the onBookingSuccess callback with the booking data
       if (onBookingSuccess) {
         onBookingSuccess(bookingData);
       }
 
       setSubmitDisabled(false);
     } catch (error) {
-      // Handle network errors or other exceptions here
       console.error("Error submitting booking:", error);
+
+      setError(
+        "An error occurred while submitting the booking. Please try again later."
+      );
+
+      setSubmitDisabled(false);
     }
   };
 
@@ -151,7 +121,6 @@ function BookingForm({
           departureDate={departureDate}
           onDatesChange={handleDatesChange}
           bookedDates={bookedDates}
-          disabledDates={filteredRange}
         />
         <div className="guests-container">
           <label htmlFor="guests">Number of Guests:</label>
@@ -181,13 +150,10 @@ function BookingForm({
           </div>
         </div>
         {arrivalDate && departureDate && <h4>Total Price: {totalPrice} NOK</h4>}
-        {commonDates.length > 0 ? (
-          <p className="error-message">Some dates are already booked.</p>
-        ) : (
-          <CtaStyledButton type="submit" disabled={commonDates.length > 0}>
-            Book Now
-          </CtaStyledButton>
-        )}
+        {error && <p className="error-message">{error}</p>}
+        <CtaStyledButton type="submit" disabled={submitDisabled}>
+          Book Now
+        </CtaStyledButton>
       </form>
     </div>
   );

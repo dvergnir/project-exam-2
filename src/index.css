@@ -122,7 +122,8 @@ body {
 
 .link {
   color: var(--secondary-color);
-  font-size: 1rem;
+  font-size: 1.2rem;
+  text-decoration: underline;
 }
 
 .profile-info h2 {
@@ -146,8 +147,20 @@ ul {
   font-weight: 500;
 }
 
+.booking-success {
+  margin-top: 50px;
+}
+
 .venue-description {
   margin-top: 25px;
+}
+
+.date-element {
+  width: 200px;
+}
+
+.profilemenu-link {
+  font-size: 1.5em;
 }
 
 .error-message {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import FormInput from "../../../form/FormInput";
 import CheckboxInput from "../../../form/CheckboxInput";
@@ -9,16 +8,45 @@ import {
   StyledAccommodationItem,
   StyledAccommodationsWrapper,
 } from "./CreateVenueForm.styled";
+import { updateVenueApi } from "./updateVenueApi";
 
-const CreateVenueForm = ({ onSubmit }) => {
+const EditVenueForm = ({ initialData, onSubmit }) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: initialData,
+  });
+
+  const handleUpdateVenue = async (formData) => {
+    formData.price = parseFloat(formData.price);
+    formData.maxGuests = parseInt(formData.maxGuests);
+    formData.rating = parseInt(formData.rating);
+
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const success = await updateVenueApi(
+        accessToken,
+        initialData.id,
+        formData
+      );
+
+      if (success) {
+        // Handle the success case (e.g., show a success message)
+        console.log("Venue updated successfully");
+      } else {
+        // Handle the failure case (e.g., show an error message)
+        console.error("Failed to update venue");
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error("Error occurred while updating venue:", error);
+    }
+  };
 
   return (
-    <FormStyle onSubmit={handleSubmit(onSubmit)}>
+    <FormStyle onSubmit={handleSubmit(handleUpdateVenue)}>
       <section>
         <h2>Basic Information</h2>
         <div className="form-group">
@@ -26,7 +54,6 @@ const CreateVenueForm = ({ onSubmit }) => {
           <Controller
             name="name"
             control={control}
-            defaultValue=""
             rules={{
               required: "Name is required",
             }}
@@ -54,7 +81,6 @@ const CreateVenueForm = ({ onSubmit }) => {
           <Controller
             name="description"
             control={control}
-            defaultValue=""
             rules={{
               required: "Description is required",
             }}
@@ -80,104 +106,102 @@ const CreateVenueForm = ({ onSubmit }) => {
       <section>
         <h2>Location</h2>
         <div className="form-group">
-          <div className="form-group">
-            <label htmlFor="location.address">Address</label>
-            <Controller
-              name="location.address"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <div>
-                  <FormInput
-                    type="text"
-                    id="location.address"
-                    {...field}
-                    error={
-                      errors.address && (
-                        <StyledErrorMessage>
-                          {errors.address.message}
-                        </StyledErrorMessage>
-                      )
-                    }
-                  />
-                </div>
-              )}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="location.city">City</label>
-            <Controller
-              name="location.city"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <div>
-                  <FormInput
-                    type="text"
-                    id="location.city"
-                    {...field}
-                    error={
-                      errors.city && (
-                        <StyledErrorMessage>
-                          {errors.city.message}
-                        </StyledErrorMessage>
-                      )
-                    }
-                  />
-                </div>
-              )}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="location.zip">ZIP Code</label>
-            <Controller
-              name="location.zip"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <div>
-                  <FormInput
-                    type="text"
-                    id="location.zip"
-                    {...field}
-                    error={
-                      errors.zip && (
-                        <StyledErrorMessage>
-                          {errors.zip.message}
-                        </StyledErrorMessage>
-                      )
-                    }
-                  />
-                </div>
-              )}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="location.country">Country</label>
-            <Controller
-              name="location.country"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <div>
-                  <FormInput
-                    type="text"
-                    id="location.country"
-                    {...field}
-                    error={
-                      errors.country && (
-                        <StyledErrorMessage>
-                          {errors.country.message}
-                        </StyledErrorMessage>
-                      )
-                    }
-                  />
-                </div>
-              )}
-            />
-          </div>
+          <label htmlFor="location.address">Address</label>
+          <Controller
+            name="location.address"
+            control={control}
+            render={({ field }) => (
+              <div>
+                <FormInput
+                  type="text"
+                  id="location.address"
+                  {...field}
+                  error={
+                    errors["location.address"] && (
+                      <StyledErrorMessage>
+                        {errors["location.address"].message}
+                      </StyledErrorMessage>
+                    )
+                  }
+                />
+              </div>
+            )}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="location.city">City</label>
+          <Controller
+            name="location.city"
+            control={control}
+            render={({ field }) => (
+              <div>
+                <FormInput
+                  type="text"
+                  id="location.city"
+                  {...field}
+                  error={
+                    errors["location.city"] && (
+                      <StyledErrorMessage>
+                        {errors["location.city"].message}
+                      </StyledErrorMessage>
+                    )
+                  }
+                />
+              </div>
+            )}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="location.zip">ZIP Code</label>
+          <Controller
+            name="location.zip"
+            control={control}
+            render={({ field }) => (
+              <div>
+                <FormInput
+                  type="text"
+                  id="location.zip"
+                  {...field}
+                  error={
+                    errors["location.zip"] && (
+                      <StyledErrorMessage>
+                        {errors["location.zip"].message}
+                      </StyledErrorMessage>
+                    )
+                  }
+                />
+              </div>
+            )}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="location.country">Country</label>
+          <Controller
+            name="location.country"
+            control={control}
+            render={({ field }) => (
+              <div>
+                <FormInput
+                  type="text"
+                  id="location.country"
+                  {...field}
+                  error={
+                    errors["location.country"] && (
+                      <StyledErrorMessage>
+                        {errors["location.country"].message}
+                      </StyledErrorMessage>
+                    )
+                  }
+                />
+              </div>
+            )}
+          />
         </div>
       </section>
+
       <section>
         <h2>Media</h2>
         <div className="form-group">
@@ -185,7 +209,6 @@ const CreateVenueForm = ({ onSubmit }) => {
           <Controller
             name="media"
             control={control}
-            defaultValue=""
             render={({ field }) => (
               <div>
                 <FormInput type="text" id="media" {...field} />
@@ -194,6 +217,7 @@ const CreateVenueForm = ({ onSubmit }) => {
           />
         </div>
       </section>
+
       <section>
         <h2>Pricing and Guest Information</h2>
         <div className="form-group">
@@ -201,7 +225,6 @@ const CreateVenueForm = ({ onSubmit }) => {
           <Controller
             name="price"
             control={control}
-            defaultValue={1}
             rules={{
               required: "Price is required",
               min: 1,
@@ -230,7 +253,6 @@ const CreateVenueForm = ({ onSubmit }) => {
           <Controller
             name="maxGuests"
             control={control}
-            defaultValue={1}
             rules={{
               required: "Maximum guests is required",
               min: 1,
@@ -259,7 +281,6 @@ const CreateVenueForm = ({ onSubmit }) => {
           <Controller
             name="rating"
             control={control}
-            defaultValue={0}
             render={({ field }) => (
               <div>
                 <FormInput type="number" id="rating" {...field} />
@@ -268,15 +289,15 @@ const CreateVenueForm = ({ onSubmit }) => {
           />
         </div>
       </section>
+
       <StyledAccommodationsWrapper>
         <h2>Accommodations</h2>
         <div className="form-group">
           <StyledAccommodationItem>
-            <label htmlFor="wifi">Wi-Fi</label>
+            <label htmlFor="meta.wifi">Wi-Fi</label>
             <Controller
               name="meta.wifi"
               control={control}
-              defaultValue={false}
               render={({ field }) => (
                 <div>
                   <CheckboxInput id="wifi" {...field} />
@@ -288,11 +309,10 @@ const CreateVenueForm = ({ onSubmit }) => {
 
         <div className="form-group">
           <StyledAccommodationItem>
-            <label htmlFor="parking">Parking</label>
+            <label htmlFor="meta.parking">Parking</label>
             <Controller
               name="meta.parking"
               control={control}
-              defaultValue={false}
               render={({ field }) => (
                 <div>
                   <CheckboxInput id="parking" {...field} />
@@ -304,11 +324,10 @@ const CreateVenueForm = ({ onSubmit }) => {
 
         <div className="form-group">
           <StyledAccommodationItem>
-            <label htmlFor="breakfast">Breakfast</label>
+            <label htmlFor="meta.breakfast">Breakfast</label>
             <Controller
               name="meta.breakfast"
               control={control}
-              defaultValue={false}
               render={({ field }) => (
                 <div>
                   <CheckboxInput id="breakfast" {...field} />
@@ -320,11 +339,10 @@ const CreateVenueForm = ({ onSubmit }) => {
 
         <div className="form-group">
           <StyledAccommodationItem>
-            <label htmlFor="pets">Pets Allowed</label>
+            <label htmlFor="meta.pets">Pets Allowed</label>
             <Controller
               name="meta.pets"
               control={control}
-              defaultValue={false}
               render={({ field }) => (
                 <div>
                   <CheckboxInput id="pets" {...field} />
@@ -335,9 +353,9 @@ const CreateVenueForm = ({ onSubmit }) => {
         </div>
       </StyledAccommodationsWrapper>
 
-      <CtaStyledButton type="submit">Create Venue</CtaStyledButton>
+      <CtaStyledButton type="submit">Update Venue</CtaStyledButton>
     </FormStyle>
   );
 };
 
-export default CreateVenueForm;
+export default EditVenueForm;

@@ -27,6 +27,7 @@ const LoginUser = () => {
 
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("name", data.name);
+      localStorage.setItem("venueManager", data.venueManager);
 
       refreshAuth();
       navigate("/");

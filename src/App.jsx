@@ -37,23 +37,43 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route
             path="/profile"
-            element={<ProtectedRoute element={<Profile />} />}
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/profile/booking-history"
-            element={<ProtectedRoute element={<BookingHistory />} />}
+            element={
+              <ProtectedRoute>
+                <BookingHistory />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/venue-management"
-            element={<ProtectedRoute element={<VenueManagement />} />}
+            element={
+              <ProtectedRoute>
+                <VenueManagement />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/create-venue"
-            element={<ProtectedRoute element={<CreateVenue />} />}
+            element={
+              <ProtectedRoute>
+                <CreateVenue />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/edit-venue/:id"
-            element={<ProtectedRoute element={<EditVenue />} />}
+            element={
+              <ProtectedRoute>
+                <EditVenue />
+              </ProtectedRoute>
+            }
           />
         </Route>
       </Routes>

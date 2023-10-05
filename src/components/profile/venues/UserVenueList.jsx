@@ -12,15 +12,22 @@ const UserVenueList = () => {
 
   useEffect(() => {
     if (!token) {
-      setError("No access token found.");
-      setIsLoading(false);
-      return;
+      // Adds a delay to prevent error to display before content is loaded from API.
+      setTimeout(() => {
+        const updatedToken = localStorage.getItem("accessToken");
+        if (updatedToken) {
+          fetchVenuesWithToken(updatedToken);
+        } else {
+          setError("No access token found.");
+          setIsLoading(false);
+        }
+      }, 1000);
+    } else {
+      fetchVenuesWithToken(token);
     }
-
-    fetchVenues();
   }, [token]);
 
-  const fetchVenues = async () => {
+  const fetchVenuesWithToken = async () => {
     try {
       const data = await fetchVenuesByOwner(token);
       setVenues(data);

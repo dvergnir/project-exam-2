@@ -1,18 +1,12 @@
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import FormInput from "../../../form/FormInput";
-import CheckboxInput from "./CheckboxInput";
+import CheckboxInput from "../../../form/CheckboxInput";
 import { FormStyle } from "../../../form/FormStyle.styled";
 import { CtaStyledButton } from "../../../utils/StyledButton.styled";
 import { StyledErrorMessage } from "../../../utils/ErrorMessage.styled";
 
-function RegistrationFormContent({ onSubmit }) {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
-
+function RegistrationFormContent({ onSubmit, control, errors, handleSubmit }) {
   return (
     <FormStyle onSubmit={handleSubmit(onSubmit)}>
       <Controller

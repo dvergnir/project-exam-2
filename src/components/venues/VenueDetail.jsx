@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getVenueById } from "../api/venue/getVenueById";
 import {
@@ -22,6 +22,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { fetchBookedDates } from "../api/auth/booking/fetchBookedDates";
 import BookingConfirmation from "../booking/BookingConfirmation";
+import LoadingSpinner from "../utils/LoadingSpinner";
 
 const placeHolderImageUrl = "https://placehold.co/600x400/png";
 
@@ -41,34 +42,47 @@ const VenueDetail = () => {
     pets: true,
   });
   const [maxGuests, setMaxGuests] = useState(1);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [bookingInfo, setBookingInfo] = useState(null);
+  const [arrivalDate, setArrivalDate] = useState(null);
+  const [departureDate, setDepartureDate] = useState(null);
+  const [bookedDates, setBookedDates] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [bookingError, setBookingError] = useState(false);
+  const [bookingErrorMessage, setBookingErrorMessage] = useState("");
 
   const handleImageError = (e) => {
     e.target.src = placeHolderImageUrl;
     e.target.onerror = null;
   };
 
-  const [arrivalDate, setArrivalDate] = useState(null);
-  const [departureDate, setDepartureDate] = useState(null);
-  const [bookedDates, setBookedDates] = useState([]);
-
   useEffect(() => {
     const fetchVenue = async () => {
-      const venueData = await getVenueById(id);
-      const venueImages = venueData.media;
+      try {
+        const venueData = await getVenueById(id);
+        const venueImages = venueData.media;
 
-      setImageUrl(venueImages);
-      setRating(venueData.rating);
-      setName(venueData.name);
-      setCity(venueData.location.city);
-      setAddress(venueData.location.address);
-      setDescription(venueData.description);
-      setPrice(venueData.price);
-      setMeta(venueData.meta);
-      setMaxGuests(venueData.maxGuests);
-      const bookedDatesData = await fetchBookedDates(id);
-      setBookedDates(bookedDatesData);
+        setImageUrl(venueImages);
+        setRating(venueData.rating);
+        setName(venueData.name);
+        setCity(venueData.location.city);
+        setAddress(venueData.location.address);
+        setDescription(venueData.description);
+        setPrice(venueData.price);
+        setMeta(venueData.meta);
+        setMaxGuests(venueData.maxGuests);
+        const bookedDatesData = await fetchBookedDates(id);
+        setBookedDates(bookedDatesData);
+      } catch (error) {
+        setError(true);
+        setErrorMessage(
+          "An error occurred while fetching venue details. Please try again later."
+        );
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchVenue();
@@ -92,12 +106,27 @@ const VenueDetail = () => {
 
   const handleBookingSuccess = (bookingData) => {
     setBookingInfo(bookingData);
+    setBookingError(false);
+    setBookingErrorMessage("");
+  };
+
+  const handleBookingError = (error) => {
+    setBookingError(true);
+    setBookingErrorMessage(
+      "An error occurred while booking. Please try again later."
+    );
   };
 
   return (
     <MainContainer>
       <DetailVenueContainer>
-        {bookingInfo ? (
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : error ? (
+          <div>{errorMessage}</div>
+        ) : bookingError ? (
+          <div>{bookingErrorMessage}</div> // Display the booking error message
+        ) : bookingInfo ? (
           <>
             <h1>{name}</h1>
             <h2>{city}</h2>
@@ -200,6 +229,7 @@ const VenueDetail = () => {
                 bookedDates={bookedDates}
                 venueId={id}
                 onBookingSuccess={handleBookingSuccess}
+                onBookingError={handleBookingError}
               />
             ) : (
               <p className="booking-msg">Please log in to book the venue.</p>

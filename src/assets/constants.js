@@ -3,3 +3,4 @@ export const LOGIN_URL = `${BASE_URL}/auth/login`;
 export const REGISTER_URL = `${BASE_URL}/auth/register`;
 export const BOOKING_URL = `${BASE_URL}/bookings`;
 export const PROFILE_URL = `${BASE_URL}/profiles`;
+export const VENUE_URL = `${BASE_URL}/venues`;

@@ -4,12 +4,16 @@ import VenueList from "./VenueList";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { HomeH1Container } from "./Venues.Styled";
 import { StyledButton } from "../utils/StyledButton.styled";
+import LoadingSpinner from "../utils/LoadingSpinner";
 
 export default function Venues() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleListings, setVisibleListings] = useState(12);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     async function getData() {
@@ -17,8 +21,14 @@ export default function Venues() {
         const fetchedData = await fetchData();
         setData(fetchedData);
         setFilteredData(fetchedData);
+        setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setError(true);
+        setErrorMessage(
+          "An error occurred while fetching data. Please try again later."
+        );
+      } finally {
+        setIsLoading(false);
       }
     }
     getData();
@@ -52,9 +62,18 @@ export default function Venues() {
         <h1>Find Your Next Adventure</h1>
         <SearchBar onSearch={handleSearch} />
       </HomeH1Container>
-      <VenueList venues={displayedVenues} />
-      {visibleListings < filteredData.length && (
-        <StyledButton onClick={loadMore}>Load More</StyledButton>
+
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : error ? (
+        <div className="error-message">{errorMessage}</div>
+      ) : (
+        <>
+          <VenueList venues={displayedVenues} />
+          {visibleListings < filteredData.length && (
+            <StyledButton onClick={loadMore}>Load More</StyledButton>
+          )}
+        </>
       )}
     </div>
   );

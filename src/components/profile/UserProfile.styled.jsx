@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const ProfileStyle = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 300px;
 `;
 
 export const StyledAvatar = styled.img`
@@ -11,6 +14,7 @@ export const StyledAvatar = styled.img`
   max-width: 100px;
   object-fit: cover;
   padding: 20px 10px 0px 0px;
+  border-radius: 50%;
 `;
 
 export const UploadAvatarStyle = styled.div`
@@ -36,4 +40,14 @@ export const AvatarFormStyle = styled.form`
       border-color: var(--secondary-color);
     }
   }
+`;
+
+export const StyledProfileMenu = styled.div`
+  text-align: left;
+  margin-left: 20px;
+`;
+
+export const UserProfileSection = styled.div`
+  display: flex;
+  justify-content: center;
 `;

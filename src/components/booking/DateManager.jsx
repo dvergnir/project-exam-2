@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { DateManagerContainer } from "./DateManager.styled";
@@ -27,6 +27,16 @@ function DateManager({
     onDatesChange,
   ]);
 
+  const excludedDates = [];
+  for (const booking of bookedDates) {
+    const startDate = new Date(booking.dateFrom);
+    const endDate = new Date(booking.dateTo);
+
+    const datesInRange = getDatesBetweenDates(startDate, endDate);
+
+    excludedDates.push(...datesInRange);
+  }
+
   return (
     <DateManagerContainer>
       <DatePicker
@@ -35,7 +45,7 @@ function DateManager({
         placeholderText="Arrival"
         minDate={new Date()}
         className="date-picker"
-        excludeDates={bookedDates.map((booking) => new Date(booking.dateFrom))} // Use excludeDates
+        excludeDates={excludedDates}
       />
       <p>to</p>
       <DatePicker
@@ -44,10 +54,22 @@ function DateManager({
         placeholderText="Departure"
         minDate={localArrivalDate || new Date()}
         className="date-picker"
-        excludeDates={bookedDates.map((booking) => new Date(booking.dateFrom))} // Use excludeDates
+        excludeDates={excludedDates}
       />
     </DateManagerContainer>
   );
+}
+
+function getDatesBetweenDates(startDate, endDate) {
+  const dates = [];
+  let currentDate = new Date(startDate);
+
+  while (currentDate <= endDate) {
+    dates.push(new Date(currentDate));
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return dates;
 }
 
 export default DateManager;

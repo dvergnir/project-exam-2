@@ -1,19 +1,22 @@
 import { MainContainer } from "../components/layout/Main.styled";
-import LoginUser from "../components/api/auth/login/LoginUser";
+import BookingHistory from "../components/profile/bookings/BookingHistory";
 import { Helmet } from "react-helmet-async";
 
-export default function Login() {
+export default function Bookings() {
   return (
     <MainContainer>
       <Helmet>
         <html lang="en" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Log in | Holidaze</title>
-        <meta name="description" content="Log in to book venues at Holidaze" />
+        <title>Booking History | Holidaze</title>
+        <meta
+          name="description"
+          content="Your booking history here at Holidaze"
+        />
         <link rel="icon" href="/favicon.png" />
       </Helmet>
-      <LoginUser />
+      <BookingHistory />
     </MainContainer>
   );
 }

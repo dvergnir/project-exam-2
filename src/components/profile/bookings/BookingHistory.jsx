@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchBookingsForProfile } from "../../api/auth/profile/userbookings/fetchBookingsForProfile";
 import {
   BookingHistoryContainer,
   BookingHistoryH2,
 } from "./BookingHistory.styled";
 import { StyledButton } from "../../utils/StyledButton.styled";
+import LoadingSpinner from "../../utils/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 const BookingHistory = () => {
   const [bookings, setBookings] = useState([]);
   const [visibleBookings, setVisibleBookings] = useState(5);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
@@ -17,6 +20,8 @@ const BookingHistory = () => {
         setBookings(fetchedBookings);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     }
     getData();
@@ -37,21 +42,28 @@ const BookingHistory = () => {
   return (
     <div>
       <h1>Booking History</h1>
-      <ul>
-        {displayedBookings.map((booking) => (
-          <li key={booking.id}>
-            <BookingHistoryContainer>
-              <BookingHistoryH2>{booking.venue.name}</BookingHistoryH2>
-              <p>From: {formatDate(booking.dateFrom)}</p>
-              <p>To: {formatDate(booking.dateTo)}</p>
-              <p>Guests: {booking.guests}</p>
-            </BookingHistoryContainer>
-          </li>
-        ))}
-      </ul>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <ul>
+          {displayedBookings.map((booking) => (
+            <li key={booking.id}>
+              <BookingHistoryContainer>
+                <BookingHistoryH2>{booking.venue.name}</BookingHistoryH2>
+                <p>From: {formatDate(booking.dateFrom)}</p>
+                <p>To: {formatDate(booking.dateTo)}</p>
+                <p>Guests: {booking.guests}</p>
+              </BookingHistoryContainer>
+            </li>
+          ))}
+        </ul>
+      )}
       {visibleBookings < bookings.length && (
         <StyledButton onClick={loadMore}>Load More</StyledButton>
       )}
+      <Link to="/profile" className="back-to-link">
+        Back to Profile
+      </Link>
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ProfileIconContainer, StyledHeader } from "./Header.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../api/auth/AuthProvider";
 import ProfileMenu from "./ProfileMenu";
 
@@ -23,8 +23,6 @@ function Header({ children }) {
   };
 
   const handleLogout = () => {
-    // Call a logout function (provided by your authentication context)
-    // to clear the user's session and log them out.
     logout();
   };
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { MainContainer } from "../layout/Main.styled";
 import {
   ProfileStyle,
   StyledAvatar,
@@ -12,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import AvatarForm from "./AvatarForm";
 import UpcomingBookings from "./bookings/UpcomingBookings";
-import LoadingSpinner from "../utils/LoadingSpinner"; // Import your loading spinner component
+import LoadingSpinner from "../utils/LoadingSpinner";
 
 const placeHolderImageUrl =
   "https://upload.wikimedia.org/wikipedia/commons/a/ad/Placeholder_no_text.svg";
@@ -21,17 +20,17 @@ const UserProfile = () => {
   const [userProfile, setUserProfile] = useState({});
   const [newAvatarUrl, setNewAvatarUrl] = useState("");
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchProfile() {
       try {
         const profileData = await getProfile();
         setUserProfile(profileData);
-        setIsLoading(false); // Set loading to false when data is fetched
+        setIsLoading(false);
       } catch (error) {
         setError("Failed to fetch user profile");
-        setIsLoading(false); // Set loading to false in case of an error
+        setIsLoading(false);
       }
     }
 
@@ -66,7 +65,7 @@ const UserProfile = () => {
     localStorage.getItem("venueManager") === "true";
 
   return (
-    <MainContainer className="profile">
+    <>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
@@ -101,13 +100,12 @@ const UserProfile = () => {
               </ul>
             </StyledProfileMenu>
           </ProfileStyle>
-
           <AvatarForm onSubmit={handleUpdateAvatar} />
           {error && <p className="error-message">{error}</p>}
           <UpcomingBookings />
         </>
       )}
-    </MainContainer>
+    </>
   );
 };
 

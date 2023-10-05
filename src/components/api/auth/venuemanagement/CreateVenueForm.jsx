@@ -339,7 +339,6 @@ const CreateVenueForm = ({ onSubmit }) => {
               />
             </StyledAccommodationItem>
           </div>
-
           <div className="form-group">
             <StyledAccommodationItem>
               <label htmlFor="pets">Pets Allowed</label>
@@ -357,7 +356,6 @@ const CreateVenueForm = ({ onSubmit }) => {
           </div>
         </StyledAccommodationsWrapper>
       </div>
-
       <CtaStyledButton type="submit">Create Venue</CtaStyledButton>
     </FormStyle>
   );

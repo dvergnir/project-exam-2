@@ -1,4 +1,3 @@
-import React from "react";
 import VenueCard from "./VenueCard";
 import { GridContainer } from "../layout/GridContainer";
 

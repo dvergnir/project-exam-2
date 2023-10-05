@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SearchBarWrapper, SearchInput } from "./SearchBar.styled";
 
 export const SearchBar = ({ onSearch }) => {

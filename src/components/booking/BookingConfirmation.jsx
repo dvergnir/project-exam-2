@@ -1,5 +1,3 @@
-import React from "react";
-
 function BookingConfirmation({ bookingInfo }) {
   return (
     <div className="booking-confirmation">

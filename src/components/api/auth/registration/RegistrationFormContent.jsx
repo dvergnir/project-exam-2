@@ -1,4 +1,3 @@
-import React from "react";
 import { Controller } from "react-hook-form";
 import FormInput from "../../../form/FormInput";
 import CheckboxInput from "../../../form/CheckboxInput";
@@ -59,7 +58,6 @@ function RegistrationFormContent({ onSubmit, control, errors, handleSubmit }) {
           />
         )}
       />
-
       <Controller
         name="password"
         control={control}
@@ -87,7 +85,6 @@ function RegistrationFormContent({ onSubmit, control, errors, handleSubmit }) {
           />
         )}
       />
-
       <Controller
         name="avatar"
         control={control}
@@ -112,7 +109,6 @@ function RegistrationFormContent({ onSubmit, control, errors, handleSubmit }) {
           />
         )}
       />
-
       <Controller
         name="venueManager"
         control={control}
@@ -128,7 +124,6 @@ function RegistrationFormContent({ onSubmit, control, errors, handleSubmit }) {
           </div>
         )}
       />
-
       <CtaStyledButton type="submit">Register</CtaStyledButton>
     </FormStyle>
   );

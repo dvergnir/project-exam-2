@@ -4,7 +4,6 @@ import Footer from "../layout/Footer";
 import holidazeLogo from "../../images/holidazelogo.png";
 import { LayoutWrapper } from "./Layout.styled";
 import ScrollToTopButton from "../utils/ScrollToTopButton";
-import RouteToTop from "../utils/RouteToTop";
 
 export default function Layout() {
   return (

@@ -12,15 +12,12 @@ const deleteVenueApi = async (accessToken, venueId) => {
     });
 
     if (response.ok) {
-      // Venue deleted successfully
       return true;
     } else {
-      // Handle the error here
       console.error("Error deleting venue:", response.statusText);
       return false;
     }
   } catch (error) {
-    // Handle any network or other errors
     console.error("Error occurred while deleting venue:", error);
     return false;
   }

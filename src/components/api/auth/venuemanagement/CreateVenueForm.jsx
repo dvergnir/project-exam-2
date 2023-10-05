@@ -2,13 +2,13 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import FormInput from "../../../form/FormInput";
 import CheckboxInput from "../../../form/CheckboxInput";
-import { FormStyle } from "../../../form/FormStyle.styled";
+import {
+  FormStyle,
+  StyledCheckboxWrapper,
+  StyledCheckboxItem,
+} from "../../../form/FormStyle.styled";
 import { CtaStyledButton } from "../../../utils/StyledButton.styled";
 import { StyledErrorMessage } from "../../../utils/ErrorMessage.styled";
-import {
-  StyledAccommodationItem,
-  StyledAccommodationsWrapper,
-} from "./CreateVenueForm.styled";
 
 const CreateVenueForm = ({ onSubmit }) => {
   const {
@@ -182,8 +182,7 @@ const CreateVenueForm = ({ onSubmit }) => {
         <section>
           <h2>Media</h2>
           <div className="form-group">
-            <label htmlFor="media">Images</label>
-            <p>(Separate URL's with comma)</p>
+            <label htmlFor="media">Images (comma-separated URLs)</label>
             <Controller
               name="media"
               control={control}
@@ -292,10 +291,10 @@ const CreateVenueForm = ({ onSubmit }) => {
             />
           </div>
         </section>
-        <StyledAccommodationsWrapper>
+        <StyledCheckboxWrapper>
           <h2>Accommodations</h2>
           <div className="form-group">
-            <StyledAccommodationItem>
+            <StyledCheckboxItem>
               <label htmlFor="wifi">Wi-Fi</label>
               <Controller
                 name="meta.wifi"
@@ -307,10 +306,10 @@ const CreateVenueForm = ({ onSubmit }) => {
                   </div>
                 )}
               />
-            </StyledAccommodationItem>
+            </StyledCheckboxItem>
           </div>
           <div className="form-group">
-            <StyledAccommodationItem>
+            <StyledCheckboxItem>
               <label htmlFor="parking">Parking</label>
               <Controller
                 name="meta.parking"
@@ -322,10 +321,10 @@ const CreateVenueForm = ({ onSubmit }) => {
                   </div>
                 )}
               />
-            </StyledAccommodationItem>
+            </StyledCheckboxItem>
           </div>
           <div className="form-group">
-            <StyledAccommodationItem>
+            <StyledCheckboxItem>
               <label htmlFor="breakfast">Breakfast</label>
               <Controller
                 name="meta.breakfast"
@@ -337,10 +336,10 @@ const CreateVenueForm = ({ onSubmit }) => {
                   </div>
                 )}
               />
-            </StyledAccommodationItem>
+            </StyledCheckboxItem>
           </div>
           <div className="form-group">
-            <StyledAccommodationItem>
+            <StyledCheckboxItem>
               <label htmlFor="pets">Pets Allowed</label>
               <Controller
                 name="meta.pets"
@@ -352,9 +351,9 @@ const CreateVenueForm = ({ onSubmit }) => {
                   </div>
                 )}
               />
-            </StyledAccommodationItem>
+            </StyledCheckboxItem>
           </div>
-        </StyledAccommodationsWrapper>
+        </StyledCheckboxWrapper>
       </div>
       <CtaStyledButton type="submit">Create Venue</CtaStyledButton>
     </FormStyle>

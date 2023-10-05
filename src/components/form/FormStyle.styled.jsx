@@ -40,3 +40,16 @@ export const FormStyle = styled.form`
     margin-top: 8px;
   }
 `;
+
+export const StyledCheckboxWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const StyledCheckboxItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;

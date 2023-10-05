@@ -1,13 +1,13 @@
 import { useForm, Controller } from "react-hook-form";
 import FormInput from "../../../form/FormInput";
 import CheckboxInput from "../../../form/CheckboxInput";
-import { FormStyle } from "../../../form/FormStyle.styled";
+import {
+  FormStyle,
+  StyledCheckboxWrapper,
+  StyledCheckboxItem,
+} from "../../../form/FormStyle.styled";
 import { CtaStyledButton } from "../../../utils/StyledButton.styled";
 import { StyledErrorMessage } from "../../../utils/ErrorMessage.styled";
-import {
-  StyledAccommodationItem,
-  StyledAccommodationsWrapper,
-} from "./CreateVenueForm.styled";
 import { updateVenueApi } from "./updateVenueApi";
 
 const EditVenueForm = ({ initialData, onSubmit }) => {
@@ -281,10 +281,10 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
             />
           </div>
         </section>
-        <StyledAccommodationsWrapper>
+        <StyledCheckboxWrapper>
           <h2>Accommodations</h2>
           <div className="form-group">
-            <StyledAccommodationItem>
+            <StyledCheckboxItem>
               <label htmlFor="meta.wifi">Wi-Fi</label>
               <Controller
                 name="meta.wifi"
@@ -295,10 +295,10 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
                   </div>
                 )}
               />
-            </StyledAccommodationItem>
+            </StyledCheckboxItem>
           </div>
           <div className="form-group">
-            <StyledAccommodationItem>
+            <StyledCheckboxItem>
               <label htmlFor="meta.parking">Parking</label>
               <Controller
                 name="meta.parking"
@@ -309,10 +309,10 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
                   </div>
                 )}
               />
-            </StyledAccommodationItem>
+            </StyledCheckboxItem>
           </div>
           <div className="form-group">
-            <StyledAccommodationItem>
+            <StyledCheckboxItem>
               <label htmlFor="meta.breakfast">Breakfast</label>
               <Controller
                 name="meta.breakfast"
@@ -323,10 +323,10 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
                   </div>
                 )}
               />
-            </StyledAccommodationItem>
+            </StyledCheckboxItem>
           </div>
           <div className="form-group">
-            <StyledAccommodationItem>
+            <StyledCheckboxItem>
               <label htmlFor="meta.pets">Pets Allowed</label>
               <Controller
                 name="meta.pets"
@@ -337,9 +337,9 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
                   </div>
                 )}
               />
-            </StyledAccommodationItem>
+            </StyledCheckboxItem>
           </div>
-        </StyledAccommodationsWrapper>
+        </StyledCheckboxWrapper>
       </div>
       <CtaStyledButton type="submit">Update Venue</CtaStyledButton>
     </FormStyle>

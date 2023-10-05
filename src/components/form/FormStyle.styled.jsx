@@ -5,6 +5,14 @@ export const FormStyle = styled.form`
   flex-direction: column;
   max-width: 300px;
   margin: 0 auto;
+  align-items: center;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
   label {
     margin-bottom: 8px;
@@ -12,6 +20,8 @@ export const FormStyle = styled.form`
   }
 
   input {
+    width: 100%;
+    max-width: 250px;
     padding: 8px;
     margin-bottom: 16px;
     border: 1px solid #ccc;

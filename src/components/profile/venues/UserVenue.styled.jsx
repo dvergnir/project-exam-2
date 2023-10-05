@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const UserVenueWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 `;
 
 export const UserVenueButtonContainer = styled.div`

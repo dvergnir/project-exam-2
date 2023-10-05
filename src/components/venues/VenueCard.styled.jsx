@@ -35,9 +35,9 @@ export const RatingSquare = styled.div`
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: var(--primary-color);
+  background-color: var(--tertiary-color);
   color: white;
-  padding: 5px;
+  padding: 10px;
   border-radius: 4px;
   width: 100%;
   max-width: 25px;

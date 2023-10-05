@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
   appearance: none;
   margin: 0px 20px !important;
-  width: 20px;
+  max-width: 20px !important;
   height: 20px;
   border: 1px solid #ccc
   border-radius: 4px;

@@ -8,11 +8,15 @@ export default function VenueManagement() {
   return (
     <MainContainer>
       <Helmet>
+        <html lang="en" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Venue Management | Holidaze</title>
         <meta
           name="description"
           content="Manage your venues here at Holidaze"
         />
+        <link rel="icon" href="/favicon.png" />
       </Helmet>
       <h1>Venue Management</h1>
       <h2>My Venues</h2>

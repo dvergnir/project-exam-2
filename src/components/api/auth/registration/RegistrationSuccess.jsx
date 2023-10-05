@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { StyledRegistrationSuccess } from "./RegistrationSuccess.styled";
 import { StyledButton } from "../../../utils/StyledButton.styled";

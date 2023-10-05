@@ -75,7 +75,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               )}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="description">Description</label>
             <Controller
@@ -128,7 +127,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               )}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="location.city">City</label>
             <Controller
@@ -152,7 +150,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               )}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="location.zip">ZIP Code</label>
             <Controller
@@ -176,7 +173,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               )}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="location.country">Country</label>
             <Controller
@@ -245,7 +241,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               )}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="maxGuests">Maximum Guests</label>
             <Controller
@@ -273,7 +268,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               )}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="rating">Rating</label>
             <Controller
@@ -303,7 +297,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               />
             </StyledAccommodationItem>
           </div>
-
           <div className="form-group">
             <StyledAccommodationItem>
               <label htmlFor="meta.parking">Parking</label>
@@ -318,7 +311,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               />
             </StyledAccommodationItem>
           </div>
-
           <div className="form-group">
             <StyledAccommodationItem>
               <label htmlFor="meta.breakfast">Breakfast</label>
@@ -333,7 +325,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
               />
             </StyledAccommodationItem>
           </div>
-
           <div className="form-group">
             <StyledAccommodationItem>
               <label htmlFor="meta.pets">Pets Allowed</label>
@@ -350,7 +341,6 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
           </div>
         </StyledAccommodationsWrapper>
       </div>
-
       <CtaStyledButton type="submit">Update Venue</CtaStyledButton>
     </FormStyle>
   );

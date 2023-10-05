@@ -16,7 +16,6 @@ import {
   faPaw,
 } from "@fortawesome/free-solid-svg-icons";
 import BookingForm from "../booking/BookingForm";
-import { MainContainer } from "../layout/Main.styled";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

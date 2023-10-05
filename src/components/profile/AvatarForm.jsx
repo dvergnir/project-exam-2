@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { AvatarFormStyle, UploadAvatarStyle } from "./UserProfile.styled";
 import { StyledButton } from "../utils/StyledButton.styled";

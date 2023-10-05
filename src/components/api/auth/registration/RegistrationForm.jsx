@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import RegistrationFormContent from "./RegistrationFormContent";
 import RegistrationSuccess from "./RegistrationSuccess";
@@ -26,7 +26,7 @@ function RegistrationForm() {
       });
 
       if (response.ok) {
-        setIsRegistrationSuccessful(true); // Set registration success state
+        setIsRegistrationSuccessful(true);
       } else {
         const errorData = await response.json();
         const errorMessage = errorData.errors[0]?.message || "Unknown error";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CreateVenueForm from "./CreateVenueForm";
 import createVenueApi from "./createVenueApi";
 import VenueCreationSuccess from "./VenueCreationSuccess";

@@ -22,7 +22,7 @@ export const MenuItem = styled.li`
 
   a {
     text-decoration: none;
-    color: #333;
+    color: var(--secondary-color);
     display: block;
     padding: 8px 16px;
 

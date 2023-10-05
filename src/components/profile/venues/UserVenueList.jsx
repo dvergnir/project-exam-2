@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { fetchVenuesByOwner } from "../../api/venue/fetchVenuesByOwner";
 import VenueItem from "./VenueItem";
 import { BookingHistoryContainer } from "../bookings/BookingHistory.styled";

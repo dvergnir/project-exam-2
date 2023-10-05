@@ -24,16 +24,13 @@ const createVenueApi = async (venueData) => {
     console.log(venueData);
 
     if (response.ok) {
-      // Venue created successfully
       const responseData = await response.json();
-      return responseData; // You can return the response data if needed
+      return responseData;
     } else {
-      // Handle the error here
       console.error("Error creating venue:", response.statusText);
       return null;
     }
   } catch (error) {
-    // Handle any network or other errors
     console.error("Error occurred while creating venue:", error);
     return null;
   }

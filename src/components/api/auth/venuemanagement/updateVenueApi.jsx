@@ -16,6 +16,7 @@ export const updateVenueApi = async (
   } else {
     updatedVenueData.media = [];
   }
+
   try {
     const response = await fetch(`${BASE_URL}/venues/${venueId}`, {
       method: "PUT",
@@ -29,7 +30,8 @@ export const updateVenueApi = async (
     console.log(updatedVenueData);
 
     if (!response.ok) {
-      throw new Error("Failed to update venue");
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to update venue");
     }
 
     return true;

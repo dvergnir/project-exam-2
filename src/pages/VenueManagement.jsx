@@ -12,6 +12,9 @@ export default function VenueManagement() {
       <Link to="/create-venue">
         <StyledButton>Add Venue</StyledButton>
       </Link>
+      <Link to="/profile" className="back-to-link">
+        Back to Profile
+      </Link>
     </MainContainer>
   );
 }

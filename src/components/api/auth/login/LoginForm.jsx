@@ -5,7 +5,7 @@ import { FormStyle } from "../../../form/FormStyle.styled";
 import { StyledButton } from "../../../utils/StyledButton.styled";
 import { StyledErrorMessage } from "../../../utils/ErrorMessage.styled";
 
-const LoginForm = ({ onSubmit, error }) => {
+const LoginForm = ({ onSubmit, serverError }) => {
   const {
     handleSubmit,
     control,
@@ -13,9 +13,8 @@ const LoginForm = ({ onSubmit, error }) => {
   } = useForm();
 
   return (
-    <FormStyle onSubmit={handleSubmit(onSubmit)}>
+    <FormStyle onSubmit={handleSubmit(onSubmit)} $error={serverError}>
       <h1>Sign in</h1>
-
       <Controller
         name="email"
         control={control}
@@ -33,11 +32,14 @@ const LoginForm = ({ onSubmit, error }) => {
             type="email"
             id="email"
             {...field}
-            error={errors.email && errors.email.message}
+            error={
+              errors.email && (
+                <StyledErrorMessage>{errors.email.message}</StyledErrorMessage>
+              )
+            }
           />
         )}
       />
-
       <Controller
         name="password"
         control={control}
@@ -65,8 +67,7 @@ const LoginForm = ({ onSubmit, error }) => {
           />
         )}
       />
-
-      {error && <p className="error">{error}</p>}
+      {serverError && <StyledErrorMessage>{serverError}</StyledErrorMessage>}{" "}
       <div>
         <StyledButton type="submit">Login</StyledButton>
       </div>

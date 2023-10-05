@@ -10,7 +10,6 @@ import deleteVenueApi from "../../api/auth/venuemanagement/deleteVenueApi";
 import { Link } from "react-router-dom";
 
 const VenueItem = ({ venue, onDelete }) => {
-  console.log(venue);
   const handleDelete = async () => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this venue?"
@@ -52,7 +51,7 @@ const VenueItem = ({ venue, onDelete }) => {
         <h3>Bookings</h3>
         <VenueBookingsWrapper>
           {venue.bookings.map((booking, index) => (
-            <div key={index} className="date-element">
+            <div key={index} className="booking-date-element">
               <VenueBookingsText>
                 From: {formatDate(new Date(booking.dateFrom))}
               </VenueBookingsText>{" "}

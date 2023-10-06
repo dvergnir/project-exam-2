@@ -1,6 +1,7 @@
 import { MainContainer } from "../components/layout/Main.styled";
 import VenueDetail from "../components/venues/VenueDetail";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 export default function Venue() {
   return (
@@ -17,6 +18,9 @@ export default function Venue() {
         <link rel="icon" href="/favicon.png" />
       </Helmet>
       <VenueDetail />
+      <Link to="/" className="back-to-link">
+        Back to Venues
+      </Link>
     </MainContainer>
   );
 }

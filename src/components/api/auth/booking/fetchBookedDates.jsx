@@ -29,7 +29,6 @@ export const fetchBookedDates = async (venueId) => {
         throw new Error("Invalid 'bookings' field");
       }
     } else {
-      console.log(response);
       throw new Error("Failed to fetch booked dates");
     }
   } catch (error) {

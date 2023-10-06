@@ -1,7 +1,11 @@
 import { Controller } from "react-hook-form";
 import FormInput from "../../../form/FormInput";
 import CheckboxInput from "../../../form/CheckboxInput";
-import { FormStyle } from "../../../form/FormStyle.styled";
+import {
+  FormStyle,
+  StyledCheckboxWrapper,
+  StyledCheckboxItem,
+} from "../../../form/FormStyle.styled";
 import { CtaStyledButton } from "../../../utils/StyledButton.styled";
 import { StyledErrorMessage } from "../../../utils/ErrorMessage.styled";
 
@@ -109,21 +113,23 @@ function RegistrationFormContent({ onSubmit, control, errors, handleSubmit }) {
           />
         )}
       />
-      <Controller
-        name="venueManager"
-        control={control}
-        defaultValue={false}
-        render={({ field }) => (
-          <div>
-            <CheckboxInput label="Venue Manager" id="venueManager" {...field} />
-            {errors.venueManager && (
-              <StyledErrorMessage>
-                {errors.venueManager.message}
-              </StyledErrorMessage>
-            )}
-          </div>
-        )}
-      />
+      <StyledCheckboxWrapper>
+        <div className="form-group">
+          <StyledCheckboxItem>
+            <label htmlFor="venueManager">Venue Manager</label>
+            <Controller
+              name="venueManager"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <div>
+                  <CheckboxInput id="venueManager" {...field} />
+                </div>
+              )}
+            />
+          </StyledCheckboxItem>
+        </div>
+      </StyledCheckboxWrapper>
       <CtaStyledButton type="submit">Register</CtaStyledButton>
     </FormStyle>
   );

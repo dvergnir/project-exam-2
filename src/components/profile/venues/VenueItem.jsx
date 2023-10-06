@@ -39,36 +39,49 @@ const VenueItem = ({ venue, onDelete }) => {
   }
 
   return (
-    <UserVenueWrapper>
-      <div>
-        <h3>{venue.name}</h3>
-        <UpcomingBookingImg src={venue.media}></UpcomingBookingImg>
-        {venue.location.city && venue.location.country && (
-          <p>
-            {venue.location.city}, {venue.location.country}
-          </p>
-        )}
+    <>
+      {" "}
+      <UserVenueWrapper>
+        <div className="venue-details">
+          <div className="venue-info">
+            <h3>{venue.name}</h3>
+            <UpcomingBookingImg src={venue.media[0]}></UpcomingBookingImg>
+            {venue.location.city && venue.location.country && (
+              <p>
+                {venue.location.city}, {venue.location.country}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="buttons-and-bookings">
+          <UserVenueButtonContainer>
+            <Link to={`/edit-venue/${venue.id}`}>
+              <StyledButton>Edit</StyledButton>
+            </Link>
+            <CtaStyledButton onClick={handleDelete} className="delete-btn">
+              Delete
+            </CtaStyledButton>
+          </UserVenueButtonContainer>
+        </div>
+      </UserVenueWrapper>
+      <VenueBookingsWrapper>
         <h3>Bookings</h3>
-        <VenueBookingsWrapper>
-          {venue.bookings.map((booking, index) => (
-            <div key={index} className="booking-date-element">
+        {venue.bookings.map((booking, index) => (
+          <div key={index} className="booking-date-element">
+            <div className="date-from">
               <VenueBookingsText>
                 From: {formatDate(new Date(booking.dateFrom))}
-              </VenueBookingsText>{" "}
+              </VenueBookingsText>
+            </div>
+            <div className="date-to">
               <VenueBookingsText>
                 To: {formatDate(new Date(booking.dateTo))}
               </VenueBookingsText>
             </div>
-          ))}
-        </VenueBookingsWrapper>
-      </div>
-      <UserVenueButtonContainer>
-        <Link to={`/edit-venue/${venue.id}`}>
-          <StyledButton>Edit</StyledButton>
-        </Link>
-        <CtaStyledButton onClick={handleDelete}>Delete</CtaStyledButton>
-      </UserVenueButtonContainer>
-    </UserVenueWrapper>
+          </div>
+        ))}
+      </VenueBookingsWrapper>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getVenueById } from "../api/venue/getVenueById";
 import {
   DetailVenueContainer,
@@ -230,7 +230,9 @@ const VenueDetail = () => {
               onBookingError={handleBookingError}
             />
           ) : (
-            <p className="booking-msg">Please log in to book the venue.</p>
+            <Link to="/login">
+              <p className="booking-msg">Please log in to book the venue.</p>
+            </Link>
           )}
         </>
       )}

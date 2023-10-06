@@ -80,7 +80,7 @@ const UserProfile = () => {
                 />
               </div>
               <div className="profile-info">
-                <h2>{userProfile.name}</h2>
+                <h2 className="profile-name">{userProfile.name}</h2>
               </div>
             </UserProfileSection>
             <StyledProfileMenu>

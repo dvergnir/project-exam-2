@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchVenuesByOwner } from "../../api/venue/fetchVenuesByOwner";
 import VenueItem from "./VenueItem";
-import { BookingHistoryContainer } from "../bookings/BookingHistory.styled";
+import { BookingsContainer, MyVenuesContainer } from "./UserVenue.styled";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 
 const UserVenueList = () => {
@@ -21,7 +21,7 @@ const UserVenueList = () => {
           setError("No access token found.");
           setIsLoading(false);
         }
-      }, 1000);
+      }, 3000);
     } else {
       fetchVenuesWithToken(token);
     }
@@ -49,15 +49,15 @@ const UserVenueList = () => {
   }
 
   return (
-    <div>
-      <ul>
+    <>
+      <MyVenuesContainer>
         {venues.map((venue) => (
-          <BookingHistoryContainer key={venue.id}>
+          <BookingsContainer key={venue.id}>
             <VenueItem venue={venue} onDelete={handleDeleteVenue} />
-          </BookingHistoryContainer>
+          </BookingsContainer>
         ))}
-      </ul>
-    </div>
+      </MyVenuesContainer>
+    </>
   );
 };
 

@@ -49,6 +49,15 @@ export default function Venues() {
     setFilteredData(filteredVenues);
   };
 
+  useEffect(() => {
+    if (filteredData.length === 0) {
+      setError(true);
+      setErrorMessage("No matching results");
+    } else {
+      setError(false);
+    }
+  }, [filteredData]);
+
   const loadMore = () => {
     const newVisibleListings = visibleListings + 12;
     setVisibleListings(newVisibleListings);
@@ -66,7 +75,7 @@ export default function Venues() {
       {isLoading ? (
         <LoadingSpinner />
       ) : error ? (
-        <div className="error-message">{errorMessage}</div>
+        <div className="no-match-message">{errorMessage}</div>
       ) : (
         <>
           <VenueList venues={displayedVenues} />

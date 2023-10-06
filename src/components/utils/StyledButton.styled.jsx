@@ -5,7 +5,7 @@ export const CtaStyledButton = styled.button`
   width: 100%;
   max-width: 300px;
   background-color: var(--primary-color);
-  color: white;
+  color: black;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
@@ -42,7 +42,7 @@ export const StyledScrollToTopButton = styled.button`
   bottom: 20px;
   right: 20px;
   background-color: var(--primary-color);
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 50%;
   width: 40px;

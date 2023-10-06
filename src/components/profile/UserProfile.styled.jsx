@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+const desktopBreakpoint = "999px";
+const tabletBreakpoint = "499px";
+
 export const ProfileStyle = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,6 +10,16 @@ export const ProfileStyle = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: 300px;
+
+  @media (min-width: ${tabletBreakpoint}) {
+    max-width: 450px;
+    flex-direction: row;
+    margin-bottom: 50px;
+  }
+
+  @media (min-width: ${desktopBreakpoint}) {
+    max-width: 800px;
+  }
 `;
 
 export const StyledAvatar = styled.img`
@@ -15,6 +28,18 @@ export const StyledAvatar = styled.img`
   object-fit: cover;
   padding: 20px 10px 0px 0px;
   border-radius: 50%;
+
+  @media (min-width: ${tabletBreakpoint}) {
+    max-width: 200px;
+    text-align: center;
+    font-size: 1.2em;
+  }
+
+  @media (min-width: ${desktopBreakpoint}) {
+    max-width: 300px;
+    text-align: left;
+    font-size: 1.2em;
+  }
 `;
 
 export const UploadAvatarStyle = styled.div`
@@ -40,6 +65,15 @@ export const AvatarFormStyle = styled.form`
       border-color: var(--secondary-color);
     }
   }
+
+  @media (min-width: ${tabletBreakpoint}) {
+    max-width: 450px;
+    margin: 0 auto;
+
+    input {
+      max-width: 450px;
+    }
+  }
 `;
 
 export const StyledProfileMenu = styled.div`
@@ -50,4 +84,14 @@ export const StyledProfileMenu = styled.div`
 export const UserProfileSection = styled.div`
   display: flex;
   justify-content: center;
+
+  @media (min-width: ${tabletBreakpoint}) {
+    max-width: 450px;
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+
+  @media (min-width: ${desktopBreakpoint}) {
+    max-width: 800px;
+  }
 `;

@@ -5,6 +5,7 @@ import {
   FormStyle,
   StyledCheckboxWrapper,
   StyledCheckboxItem,
+  StyledTextArea,
 } from "../../../form/FormStyle.styled";
 import { CtaStyledButton } from "../../../utils/StyledButton.styled";
 import { StyledErrorMessage } from "../../../utils/ErrorMessage.styled";
@@ -80,15 +81,16 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
             <Controller
               name="description"
               control={control}
+              defaultValue=""
               rules={{
                 required: "Description is required",
               }}
               render={({ field }) => (
                 <div>
-                  <FormInput
-                    type="text"
+                  <StyledTextArea
                     id="description"
                     {...field}
+                    rows={10}
                     error={
                       errors.description && (
                         <StyledErrorMessage>
@@ -204,9 +206,15 @@ const EditVenueForm = ({ initialData, onSubmit }) => {
             <Controller
               name="media"
               control={control}
+              defaultValue=""
               render={({ field }) => (
                 <div>
-                  <FormInput type="text" id="media" {...field} />
+                  <StyledTextArea
+                    id="media"
+                    {...field}
+                    rows={4}
+                    title="Separate URLs with a comma"
+                  />
                 </div>
               )}
             />

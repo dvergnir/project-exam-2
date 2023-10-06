@@ -6,6 +6,7 @@ import {
   FormStyle,
   StyledCheckboxWrapper,
   StyledCheckboxItem,
+  StyledTextArea,
 } from "../../../form/FormStyle.styled";
 import { CtaStyledButton } from "../../../utils/StyledButton.styled";
 import { StyledErrorMessage } from "../../../utils/ErrorMessage.styled";
@@ -19,7 +20,7 @@ const CreateVenueForm = ({ onSubmit }) => {
 
   return (
     <FormStyle onSubmit={handleSubmit(onSubmit)}>
-      <div>
+      <div className="form-section-container">
         {" "}
         <section>
           <h2>Basic Information</h2>
@@ -61,10 +62,10 @@ const CreateVenueForm = ({ onSubmit }) => {
               }}
               render={({ field }) => (
                 <div>
-                  <FormInput
-                    type="text"
+                  <StyledTextArea
                     id="description"
                     {...field}
+                    rows={10}
                     error={
                       errors.description && (
                         <StyledErrorMessage>
@@ -189,10 +190,10 @@ const CreateVenueForm = ({ onSubmit }) => {
               defaultValue=""
               render={({ field }) => (
                 <div>
-                  <FormInput
-                    type="text"
+                  <StyledTextArea
                     id="media"
                     {...field}
+                    rows={4}
                     title="Separate URLs with a comma"
                   />
                 </div>

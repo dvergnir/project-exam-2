@@ -4,7 +4,10 @@ import {
   BookingHistoryContainer,
   BookingHistoryH2,
 } from "./BookingHistory.styled";
-import { UpcomingBookingImg } from "./UpcomingBookings.styled";
+import {
+  UpcomingBookingImg,
+  UpcomingBoookingsWrapper,
+} from "./UpcomingBookings.styled";
 
 const UpcomingBookings = () => {
   const [upcomingBookings, setUpcomingBookings] = useState([]);
@@ -35,20 +38,22 @@ const UpcomingBookings = () => {
   return (
     <div>
       <h2>Upcoming Bookings</h2>
-      <ul>
-        {limitedUpcomingBookings.map((booking) => (
-          <li key={booking.id}>
-            <BookingHistoryContainer>
-              <BookingHistoryH2>{booking.venue.name}</BookingHistoryH2>
-              <UpcomingBookingImg
-                src={booking.venue.media}
-              ></UpcomingBookingImg>
-              <p>From: {formatDate(booking.dateFrom)}</p>
-              <p>To: {formatDate(booking.dateTo)}</p>
-              <p>Guests: {booking.guests}</p>
-            </BookingHistoryContainer>
-          </li>
-        ))}
+      <ul className="upcoming-bookings-list">
+        <UpcomingBoookingsWrapper>
+          {limitedUpcomingBookings.map((booking) => (
+            <li key={booking.id}>
+              <BookingHistoryContainer>
+                <BookingHistoryH2>{booking.venue.name}</BookingHistoryH2>
+                <UpcomingBookingImg
+                  src={booking.venue.media}
+                ></UpcomingBookingImg>
+                <p>From: {formatDate(booking.dateFrom)}</p>
+                <p>To: {formatDate(booking.dateTo)}</p>
+                <p>Guests: {booking.guests}</p>
+              </BookingHistoryContainer>
+            </li>
+          ))}{" "}
+        </UpcomingBoookingsWrapper>
       </ul>
     </div>
   );

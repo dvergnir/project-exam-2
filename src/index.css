@@ -137,7 +137,7 @@ ul {
   justify-content: start;
   list-style: none;
   line-height: 30px;
-  padding: 0;
+  padding: 0px;
 }
 
 .booking-msg {
@@ -186,13 +186,51 @@ ul {
   font-size: 1.2em;
 }
 
+.no-match-message {
+  text-align: center;
+  color: var(--tertiary-color);
+  margin-top: 50px;
+  font-size: 1.2rem;
+}
+
+.booking-date-element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.date-from,
+.date-to {
+  margin-right: 10px;
+}
+
+textarea {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .error-message {
   color: red;
   text-align: center;
   font-size: 1.2rem;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 499px) {
+  .profile-name {
+    font-size: 1.5em;
+  }
+
+  .form-group {
+    max-width: 450px;
+  }
+
+  .form-section-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 999px) {
   .logo {
     max-width: 150px;
   }
@@ -203,5 +241,9 @@ ul {
 
   .userIcon {
     font-size: 3rem;
+  }
+
+  .upcoming-bookings-list {
+    display: flex;
   }
 }

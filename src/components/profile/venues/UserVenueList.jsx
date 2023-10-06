@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchVenuesByOwner } from "../../api/venue/fetchVenuesByOwner";
 import VenueItem from "./VenueItem";
-import { BookingHistoryContainer } from "../bookings/BookingHistory.styled";
+import { BookingsContainer } from "./UserVenue.styled";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 
 const UserVenueList = () => {
@@ -52,9 +52,9 @@ const UserVenueList = () => {
     <div>
       <ul>
         {venues.map((venue) => (
-          <BookingHistoryContainer key={venue.id}>
+          <BookingsContainer key={venue.id}>
             <VenueItem venue={venue} onDelete={handleDeleteVenue} />
-          </BookingHistoryContainer>
+          </BookingsContainer>
         ))}
       </ul>
     </div>

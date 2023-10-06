@@ -45,7 +45,7 @@ const VenueItem = ({ venue, onDelete }) => {
         <div className="venue-details">
           <div className="venue-info">
             <h3>{venue.name}</h3>
-            <UpcomingBookingImg src={venue.media}></UpcomingBookingImg>
+            <UpcomingBookingImg src={venue.media[0]}></UpcomingBookingImg>
             {venue.location.city && venue.location.country && (
               <p>
                 {venue.location.city}, {venue.location.country}
@@ -58,7 +58,9 @@ const VenueItem = ({ venue, onDelete }) => {
             <Link to={`/edit-venue/${venue.id}`}>
               <StyledButton>Edit</StyledButton>
             </Link>
-            <CtaStyledButton onClick={handleDelete}>Delete</CtaStyledButton>
+            <CtaStyledButton onClick={handleDelete} className="delete-btn">
+              Delete
+            </CtaStyledButton>
           </UserVenueButtonContainer>
         </div>
       </UserVenueWrapper>

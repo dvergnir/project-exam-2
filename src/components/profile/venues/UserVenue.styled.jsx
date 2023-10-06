@@ -6,7 +6,7 @@ export const UserVenueWrapper = styled.div`
   margin-bottom: 10px;
 
   .venue-details {
-    flex: 1; /* Occupy remaining space */
+    flex: 1;
     display: flex;
     align-items: center;
   }
@@ -14,10 +14,6 @@ export const UserVenueWrapper = styled.div`
   .venue-info {
     flex: 1;
     padding: 10px;
-  }
-
-  .booking-date-element {
-    margin-bottom: 5px;
   }
 `;
 
@@ -39,5 +35,25 @@ export const VenueBookingsText = styled.p`
 export const BookingsContainer = styled.div`
   width: 100%;
   max-width: 300px;
+  margin: 0 auto;
+  border: 1px solid var(--tertiary-color);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 4px var(--secondary-color);
+`;
+
+export const MyVenuesContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 999px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   margin: 0 auto;
 `;

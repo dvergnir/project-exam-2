@@ -178,8 +178,13 @@ ul {
 }
 
 .booking-date-element {
-  border: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--secondary-color);
   padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .creation-success {
@@ -191,14 +196,6 @@ ul {
   color: var(--tertiary-color);
   margin-top: 50px;
   font-size: 1.2rem;
-}
-
-.booking-date-element {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
 }
 
 .date-from,

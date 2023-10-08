@@ -7,6 +7,7 @@ import {
 import { StyledButton } from "../../utils/StyledButton.styled";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import { Link } from "react-router-dom";
+import { MainContainer } from "../../layout/Main.styled";
 
 const BookingHistory = () => {
   const [bookings, setBookings] = useState([]);
@@ -40,7 +41,7 @@ const BookingHistory = () => {
   const displayedBookings = bookings.slice(0, visibleBookings);
 
   return (
-    <div>
+    <MainContainer>
       <h1>Booking History</h1>
       {isLoading ? (
         <LoadingSpinner />
@@ -64,7 +65,7 @@ const BookingHistory = () => {
       <Link to="/profile" className="back-to-link">
         Back to Profile
       </Link>
-    </div>
+    </MainContainer>
   );
 };
 

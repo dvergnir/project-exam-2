@@ -18,6 +18,7 @@ export default function VenueList({ venues }) {
             name={venue.name}
             city={venue.location.city}
             id={venue.id}
+            price={venue.price}
           />
         );
       })}

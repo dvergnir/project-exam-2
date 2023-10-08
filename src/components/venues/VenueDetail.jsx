@@ -116,6 +116,8 @@ const VenueDetail = () => {
     );
   };
 
+  const formattedPrice = price.toLocaleString("nb-NO");
+
   return (
     <DetailVenueContainer>
       {isLoading ? (
@@ -123,11 +125,11 @@ const VenueDetail = () => {
       ) : error ? (
         <div>{errorMessage}</div>
       ) : bookingError ? (
-        <div>{bookingErrorMessage}</div> // Display the booking error message
+        <div>{bookingErrorMessage}</div>
       ) : bookingInfo ? (
         <>
           <h1>{name}</h1>
-          <h2>{city}</h2>
+          {city && <h2>{city}</h2>}
           <ImageAndRatingContainer>
             <Slider {...slickSettings}>
               {imageUrl.length === 0 ? (
@@ -217,7 +219,7 @@ const VenueDetail = () => {
           </DetailVenueIconsContainer>
           <p className="venue-info">Guests allowed: {maxGuests}</p>
           <p className="venue-info">
-            <b>{price} NOK</b> per night
+            <b>{formattedPrice} NOK</b> per night
           </p>
           {accessToken ? (
             <BookingForm

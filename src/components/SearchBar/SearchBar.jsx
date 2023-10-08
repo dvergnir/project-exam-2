@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { SearchBarWrapper, SearchInput } from "./SearchBar.styled";
+import {
+  SearchBarWrapper,
+  SearchInput,
+  VisuallyHiddenLabel,
+} from "./SearchBar.styled";
 
 export const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,6 +16,9 @@ export const SearchBar = ({ onSearch }) => {
 
   return (
     <SearchBarWrapper>
+      <VisuallyHiddenLabel htmlFor="search">
+        Search by venue or location:
+      </VisuallyHiddenLabel>
       <SearchInput
         className="search-bar"
         type="text"

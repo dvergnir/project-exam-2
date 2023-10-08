@@ -38,6 +38,7 @@ function Header({ children }) {
             icon={faUser}
             className="userIcon"
             onClick={handleMenuToggle}
+            title="Open Profile Menu"
           />
           {isMenuOpen && <ProfileMenu onClose={handleCloseMenu} />}
         </ProfileIconContainer>

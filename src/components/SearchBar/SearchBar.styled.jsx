@@ -19,3 +19,15 @@ export const SearchInput = styled.input`
     box-shadow: 0 0 5px var(--secondary-color);
   }
 `;
+
+export const VisuallyHiddenLabel = styled.label`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+`;

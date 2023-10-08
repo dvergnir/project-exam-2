@@ -11,6 +11,7 @@ export const VenueCardContainer = styled.div`
   position: relative;
   transition: transform 0.3s;
   width: 100%;
+  height: 500px;
   transform: scale(0.95);
 
   &:hover {
@@ -54,4 +55,14 @@ export const VenueCity = styled.h3`
   margin: 0;
   padding: 10px;
   color: var(--secondary-color);
+`;
+
+export const VenuePrice = styled.p`
+  font-size: 1.4rem;¨
+`;
+
+export const ViewVenueBtnContainer = styled.div`
+  position: absolute;
+  bottom: 5px;
+  text-align: center;
 `;

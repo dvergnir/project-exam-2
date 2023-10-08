@@ -106,7 +106,9 @@ function BookingForm({
       const endDate = new Date(departureDate);
       const numberOfDays = Math.round(Math.abs((startDate - endDate) / oneDay));
       const newTotalPrice = numberOfDays * price;
-      setTotalPrice(newTotalPrice);
+      const formattedPrice = newTotalPrice.toLocaleString("nb-NO");
+
+      setTotalPrice(formattedPrice);
     } else {
       setTotalPrice(null);
     }
@@ -128,6 +130,7 @@ function BookingForm({
             <StyledChangeGuestsButton
               className="decrement-button"
               onClick={handleDecrement}
+              title="Decrease Number of Guests"
             >
               -
             </StyledChangeGuestsButton>
@@ -140,10 +143,12 @@ function BookingForm({
               onChange={(e) => setGuests(parseInt(e.target.value, 10))}
               min="1"
               max={maxGuests}
+              title="Number of Guests"
             />
             <StyledChangeGuestsButton
               className="increment-button"
               onClick={handleIncrement}
+              title="Increase Number of Guests"
             >
               +
             </StyledChangeGuestsButton>

@@ -10,8 +10,8 @@ Holidaze is a user-friendly web app designed for adventurous adults aged 25 to 6
 
 - Explore a wide range of unique accommodation options.
 - Easily book your next adventure.
-- Discover user reviews and ratings for each accommodation.
 - Search for accommodations by location and preferences.
+- Become a Venue Manager and add your own venues.
 
 ## Technologies Used
 

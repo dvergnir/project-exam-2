@@ -1,43 +1,43 @@
-# Holidaze
+# HOLIDAZE
 
-Welcome to the Holidaze App repository! This project is a front-end web application designed to provide adventurous individuals aged 25-60 with the opportunity to book accommodations close to nature. It serves as my year 2 front-end project exam, showcasing the skills developed during two years at Noroff.
+![Screenshot](/src/images/readmeimg.png)
+
+## Description
+
+Holidaze is a user-friendly web app designed for adventurous adults aged 25 to 60 who seek unique and memorable accommodation experiences close to nature. Whether you're a solo traveler, a couple looking for a romantic getaway, or a group of friends planning an adventure, this app offers a diverse range of accommodation options that cater to your adventurous spirit.
+
+This project was created as part of my graduation examination upon finishing Noroff's two-year full-time front-end course. It reflects what I've learned and accomplished during my studies
+
+### Features
+
+- Explore a wide range of unique accommodation options.
+- Easily book your next adventure.
+- Search for accommodations by location and preferences.
+- Become a Venue Manager and add your own venues.
 
 ## Technologies Used
 
-This project is built using:
+- React
+- Styled Components
 
-- React: A popular JavaScript library for building user interfaces.
-- Styled Components: A CSS-in-JS library for styling React components. It offers a unique approach to styling in React applications.
+## Installation
 
-## Table of Contents
-- [Getting Started](#getting-started)
-- [Development](#development)
-- [Building for Production](#building-for-production)
+### Clone the repository
 
-## Getting Started
+`git clone git@github.com:dvergnir/project-exam-2.git`
 
-To get started with this project, follow these steps:
+### Install dependencies
 
-1. **Clone the Repository**: 
-   git clone https:git@github.com/dvergnir/project-exam-2.git
-
-2. **Install Dependencies**:
-
-   - `cd project-exam-2`
-   - `npm install`
+`npm install`
 
 ## Development
 
-During development, you can use the following commands:
+To start the live-server run the command:
 
-- `npm run dev`
-  
-Starts the development server and live reloads the app during development.
+`npm run dev`
 
-## Building for Production
+## Production
 
-To build the project for production, use the following command:
+To build the app for deployment run the command:
 
-- `npm run build`
-
-This command will create a production-ready build of your app in the build directory.
+`npm run build`

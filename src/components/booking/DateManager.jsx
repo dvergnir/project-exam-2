@@ -46,6 +46,7 @@ function DateManager({
         minDate={new Date()}
         className="date-picker"
         excludeDates={excludedDates}
+        title="Select arrival date"
       />
       <p>to</p>
       <DatePicker
@@ -55,6 +56,7 @@ function DateManager({
         minDate={localArrivalDate || new Date()}
         className="date-picker"
         excludeDates={excludedDates}
+        title="Select departure date"
       />
     </DateManagerContainer>
   );

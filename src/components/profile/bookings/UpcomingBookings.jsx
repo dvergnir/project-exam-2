@@ -46,6 +46,7 @@ const UpcomingBookings = () => {
                 <BookingHistoryH2>{booking.venue.name}</BookingHistoryH2>
                 <UpcomingBookingImg
                   src={booking.venue.media[0]}
+                  alt="Venue"
                 ></UpcomingBookingImg>
                 <p>From: {formatDate(booking.dateFrom)}</p>
                 <p>To: {formatDate(booking.dateTo)}</p>

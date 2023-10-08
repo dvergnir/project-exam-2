@@ -24,6 +24,7 @@ const AvatarForm = ({ onSubmit }) => {
               <input
                 type="text"
                 placeholder="Enter New Avatar URL"
+                title="Avatar form field"
                 {...field}
               />
               {formState.errors.newAvatarUrl && (

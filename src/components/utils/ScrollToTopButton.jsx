@@ -32,6 +32,7 @@ function ScrollToTopButton() {
     <StyledScrollToTopButton
       className={isVisible ? "visible" : ""}
       onClick={scrollToTop}
+      title="Scroll to Top"
     >
       <FontAwesomeIcon icon={faArrowUp} />
     </StyledScrollToTopButton>

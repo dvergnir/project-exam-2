@@ -45,7 +45,10 @@ const VenueItem = ({ venue, onDelete }) => {
         <div className="venue-details">
           <div className="venue-info">
             <h3>{venue.name}</h3>
-            <UpcomingBookingImg src={venue.media[0]}></UpcomingBookingImg>
+            <UpcomingBookingImg
+              src={venue.media[0]}
+              alt="Venue"
+            ></UpcomingBookingImg>
             {venue.location.city && venue.location.country && (
               <p>
                 {venue.location.city}, {venue.location.country}
